@@ -261,7 +261,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 					<h3>Basic Information</h3>
 					<p><strong>Bulletin Number:</strong> ${number}</p>
 					<p><strong>Position:</strong> ${capitalizeFirst(data.position)}</p>
-					<p><strong>Description:</strong> ${data.rawText}</p>
+					<p><strong>Description:</strong> ${data.comments}</p>
 					${data.jobName ? `<p><strong>Job Name:</strong> ${data.jobName}</p>` : ''}
 				</div>
 			
