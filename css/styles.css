@@ -1,3 +1,4 @@
+/* Color Variables */
 :root {
     --primary-color: #2196F3;
     --secondary-color: #1976D2;
@@ -26,7 +27,7 @@ body {
     color: var(--text-color);
 }
 
-/* Navigation */
+/* Navigation Styles */
 .main-nav {
     background-color: var(--primary-color);
     color: white;
@@ -61,7 +62,7 @@ body {
     background-color: var(--secondary-color);
 }
 
-/* Main Content */
+/* Main Content Styles */
 .main-content {
     flex: 1;
     max-width: 1200px;
@@ -69,7 +70,7 @@ body {
     padding: 0 20px;
 }
 
-/* Welcome Page */
+/* Welcome Page Styles */
 .welcome-container {
     text-align: center;
     padding: 40px 20px;
@@ -104,7 +105,7 @@ body {
     background-color: var(--secondary-color);
 }
 
-/* Info Section */
+/* Info Section Styles */
 .info-section {
     text-align: left;
     max-width: 600px;
@@ -124,7 +125,7 @@ body {
     margin: 10px 0;
 }
 
-/* Bulletin Editor */
+/* Bulletin Editor Styles */
 .bulletin-container {
     background: var(--card-background);
     border-radius: 8px;
@@ -229,7 +230,7 @@ body {
     display: inline-block;
 }
 
-/* Bulletin Viewer */
+/* Bulletin Viewer Styles */
 .bulletin-viewer {
     display: flex;
     flex-direction: column;
@@ -264,6 +265,13 @@ body {
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     cursor: pointer;
     transition: transform 0.2s;
+    position: relative;
+}
+
+.card-checkbox {
+    position: absolute;
+    top: 10px;
+    right: 10px;
 }
 
 .bulletin-card:hover {
@@ -308,7 +316,7 @@ body {
     font-style: italic;
 }
 
-/* Modal */
+/* Modal Styles */
 .modal {
     display: none;
     position: fixed;
@@ -401,6 +409,23 @@ body {
     margin-top: 20px;
     padding-top: 10px;
     border-top: 1px solid #ddd;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.update-date {
+    align-self: flex-end;
+}
+
+.modal-section.comments {
+    grid-column: 1 / -1;
+    margin-top: 15px;
+}
+
+.modal-section.comments p {
+    white-space: pre-wrap;
 }
 
 .close-button {
@@ -416,7 +441,7 @@ body {
     color: var(--error-color);
 }
 
-/* Selector */
+/* Selector Styles */
 .content-wrapper {
     display: flex;
     gap: 20px;
@@ -472,7 +497,7 @@ body {
     margin-right: 10px;
 }
 
-/* Card checkbox styles */
+/* Card Checkbox Styles */
 .bulletin-card {
     position: relative;
 }
@@ -493,7 +518,7 @@ body {
     color: var(--secondary-color);
 }
 
-/* Mobile drag and drop styles */
+/* Mobile Drag and Drop Styles */
 .drag-handle {
     color: #666;
     cursor: move;
@@ -547,6 +572,7 @@ body {
     white-space: nowrap;
 }
 
+/* Drawer Styles */
 .drawer-toggle {
     display: none;  /* Hidden on desktop */
     position: fixed;
@@ -562,11 +588,9 @@ body {
     box-shadow: -2px 0 5px rgba(0,0,0,0.1);
 }
 
-/* Drawer */
 .drawer-toggle.open {
     right: 300px;
 }
-
 .drawer-toggle .arrow {
     font-size: 20px;
 }
@@ -599,6 +623,7 @@ body {
         box-shadow: -2px 0 10px rgba(0,0,0,0.1);
         padding: 20px;
         overflow-y: auto;
+        z-index: 1000; /* Ensure the drawer is on top */
     }
 
     .selected-bulletins.open {
@@ -606,6 +631,7 @@ body {
     }
 }
 
+/* Drag and Drop Indicator Styles */
 .drop-indicator {
     height: 2px;
     background-color: var(--primary-color);
@@ -634,6 +660,7 @@ body {
     100% { opacity: 0.6; }
 }
 
+/* Bulletin Text Toggle Styles */
 .toggle-bulletin-text {
     background: var(--primary-color);
     color: white;
@@ -665,6 +692,7 @@ body {
     font-size: 0.9rem;
 }
 
+/* Modal Footer Styles */
 .modal-footer {
     display: flex;
     flex-direction: column;
@@ -676,6 +704,7 @@ body {
     align-self: flex-end;
 }
 
+/* Responsive Styles */
 @media (max-width: 768px) {
     .selected-item {
         padding: 8px;
@@ -701,7 +730,7 @@ body {
     }
 }
 
-/* Add a copy notification */
+/* Copy Notification Styles */
 .copy-notification {
     position: fixed;
     bottom: 20px;
@@ -722,7 +751,7 @@ body {
     100% { opacity: 0; transform: translate(-50%, -20px); }
 }
 
-/* Messages */
+/* Message Styles */
 .message {
     padding: 10px;
     border-radius: 4px;
@@ -739,7 +768,7 @@ body {
     color: var(--success-color);
 }
 
-/* Footer */
+/* Footer Styles */
 footer {
     background-color: var(--primary-color);
     color: white;
@@ -757,7 +786,7 @@ footer a:hover {
     text-decoration: underline;
 }
 
-/* Extracted Fields */
+/* Extracted Fields Styles */
 .extracted-fields {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -779,7 +808,7 @@ footer a:hover {
     color: var(--text-color);
 }
 
-/* Responsive Design */
+/* Responsive Design Styles */
 @media (max-width: 768px) {
     .nav-container {
         flex-direction: column;
