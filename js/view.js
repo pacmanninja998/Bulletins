@@ -285,7 +285,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 					<h3>Basic Information</h3>
 					<p><strong>Bulletin Number:</strong> ${number}</p>
 					<p><strong>Position:</strong> ${capitalizeFirst(data.position)}</p>
-					<p><strong>Comments:</strong> ${data.comments || 'No comments available'}</p>
+					<p><strong>Comments:</strong> ${data.comments ? data.comments.trim() : 'No comments available'}</p>
 					${data.jobName ? `<p><strong>Job Name:</strong> ${data.jobName}</p>` : ''}
 				</div>
 			
