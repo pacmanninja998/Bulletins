@@ -156,10 +156,10 @@ document.addEventListener('DOMContentLoaded', async function() {
                 const data = bulletins[number];
                 return `
                     <div class="selected-item" data-number="${number}">
-                        <div class="drag-handle">⋮</div>
-                        <div class="selected-item-content" onclick="copyBulletinNumber('${number}')">
+                        <div class="drag-handle" touch-action="none">≡</div>
+                        <div class="selected-item-content">
                             <div><strong>${data.jobId}</strong></div>
-                            <div>Bulletin: ${number}</div>
+                            <div class="bulletin-number" onclick="copyBulletinNumber('${number}')">Bulletin: ${number}</div>
                             <div>Show up: ${data.showUpTime}</div>
                             <div>Rest Days: ${data.restDays}</div>
                         </div>
@@ -190,7 +190,19 @@ document.addEventListener('DOMContentLoaded', async function() {
             new Sortable(container, {
                 animation: 150,
                 handle: '.drag-handle',
+                delay: 100, // Delay for touch devices
+                delayOnTouchOnly: true, // Only add delay for touch devices
+                touchStartThreshold: 5, // Pixels to move before drag starts
+                forceFallback: false, // Better mobile performance
+                fallbackTolerance: 3,
+                dragClass: "sortable-drag",
+                ghostClass: "sortable-ghost",
+                chosenClass: "sortable-chosen",
+                onStart: function(evt) {
+                    document.body.style.overflow = 'hidden'; // Prevent page scroll while dragging
+                },
                 onEnd: function(evt) {
+                    document.body.style.overflow = ''; // Restore page scroll
                     // Update the selectedBulletins Set to maintain the new order
                     selectedBulletins = new Set(
                         Array.from(container.children).map(el => el.dataset.number)

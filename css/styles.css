@@ -483,6 +483,116 @@ body {
     right: 10px;
 }
 
+.selected-item-content .bulletin-number {
+    color: var(--primary-color);
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.selected-item-content .bulletin-number:hover {
+    color: var(--secondary-color);
+}
+
+/* Mobile drag and drop styles */
+.drag-handle {
+    color: #666;
+    cursor: move;
+    cursor: -webkit-grab;
+    padding: 8px;
+    font-size: 20px;
+    line-height: 1;
+    touch-action: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.drag-handle:active {
+    cursor: -webkit-grabbing;
+}
+
+.sortable-ghost {
+    opacity: 0.4;
+    background-color: #f0f0f0;
+}
+
+.sortable-drag {
+    background-color: white;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.sortable-chosen {
+    background-color: #f8f9fa;
+}
+
+.selected-item {
+    background: white;
+    padding: 12px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+    touch-action: none;
+}
+
+.selected-item-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.selected-item-content > div {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+    .selected-item {
+        padding: 8px;
+    }
+
+    .drag-handle {
+        padding: 12px 8px;
+        margin: -8px 0;
+        font-size: 24px;
+    }
+
+    .selected-bulletins {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        max-height: 40vh;
+        overflow-y: auto;
+        z-index: 1000;
+        border-radius: 16px 16px 0 0;
+        box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+    }
+}
+
+/* Add a copy notification */
+.copy-notification {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0,0,0,0.8);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 4px;
+    z-index: 2000;
+    animation: fadeInOut 2s ease-in-out;
+}
+
+@keyframes fadeInOut {
+    0% { opacity: 0; transform: translate(-50%, 20px); }
+    15% { opacity: 1; transform: translate(-50%, 0); }
+    85% { opacity: 1; transform: translate(-50%, 0); }
+    100% { opacity: 0; transform: translate(-50%, -20px); }
+}
+
 /* Messages */
 .message {
     padding: 10px;
