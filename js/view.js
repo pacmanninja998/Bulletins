@@ -271,54 +271,49 @@ document.addEventListener('DOMContentLoaded', async function() {
         }
     }
 
-    function showBulletinDetails(number) {
-        const data = bulletins[number];
-        const date = new Date(data.timestamp).toLocaleString();
+	function showBulletinDetails(number) {
+		const data = bulletins[number];
+		const date = new Date(data.timestamp).toLocaleString();
 
-        modalContent.innerHTML = `
-            <div class="modal-header">
-                <h2>Job ID: ${data.jobId || 'N/A'}</h2>
-                <span class="close-button">&times;</span>
-            </div>
-            <div class="modal-grid">
-                <div class="modal-section">
-                    <h3>Basic Information</h3>
-                    <p><strong>Bulletin Number:</strong> ${number}</p>
-                    <p><strong>Position:</strong> ${capitalizeFirst(data.position)}</p>
-                    <p><strong>Description:</strong> ${data.comments}</p>
-                    ${data.jobName ? `<p><strong>Job Name:</strong> ${data.jobName}</p>` : ''}
-                </div>
-            
-                <div class="modal-section">
-                    <h3>Schedule Information</h3>
-                    <p><strong>Show Up Time:</strong> ${data.showUpTime}</p>
-                    <p><strong>Shift:</strong> ${data.shift}</p>
-                    <p><strong>Rest Days:</strong> ${data.restDays}</p>
-                </div>
+		modalContent.innerHTML = `
+			<div class="modal-header">
+				<h2>Job ID: ${data.jobId || 'N/A'}</h2>
+				<span class="close-button">&times;</span>
+			</div>
+			<div class="modal-grid">
+				<div class="modal-section">
+					<h3>Basic Information</h3>
+					<p><strong>Bulletin Number:</strong> ${number}</p>
+					<p><strong>Position:</strong> ${capitalizeFirst(data.position)}</p>
+					<p><strong>Comments:</strong> ${data.comments || 'No comments available'}</p>
+					${data.jobName ? `<p><strong>Job Name:</strong> ${data.jobName}</p>` : ''}
+				</div>
+			
+				<div class="modal-section">
+					<h3>Schedule Information</h3>
+					<p><strong>Show Up Time:</strong> ${data.showUpTime}</p>
+					<p><strong>Shift:</strong> ${data.shift}</p>
+					<p><strong>Rest Days:</strong> ${data.restDays}</p>
+				</div>
 
-                <div class="modal-section comments">
-                    <h3>Comments</h3>
-                    <p>${data.comments || 'No comments available'}</p>
-                </div>
+				<div class="modal-footer">
+					<span class="update-date">Last updated: ${date}</span>
+					<button class="toggle-bulletin-text" onclick="toggleBulletinText(event)">Show Full Bulletin</button>
+					<div class="bulletin-text-container" style="display: none;">
+						<div class="bulletin-text">
+							${data.rawText || 'Not available'}
+						</div>
+					</div>
+				</div>
+			</div>
+		`;
 
-                <div class="modal-footer">
-                    <span class="update-date">Last updated: ${date}</span>
-                    <button class="toggle-bulletin-text" onclick="toggleBulletinText(event)">Show Full Bulletin</button>
-                    <div class="bulletin-text-container" style="display: none;">
-                        <div class="bulletin-text">
-                            ${data.rawText || 'Not available'}
-                        </div>
-                    </div>
-                </div>
-            </div>
-        `;
+		modal.style.display = 'block';
 
-        modal.style.display = 'block';
-
-        // Re-attach close button event listener
-        const newCloseButton = modalContent.querySelector('.close-button');
-        newCloseButton.addEventListener('click', () => modal.style.display = 'none');
-    }
+		// Re-attach close button event listener
+		const newCloseButton = modalContent.querySelector('.close-button');
+		newCloseButton.addEventListener('click', () => modal.style.display = 'none');
+	}
 
     // Add this function for toggling the bulletin text
     window.toggleBulletinText = function(event) {
