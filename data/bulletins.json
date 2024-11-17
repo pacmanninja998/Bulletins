@@ -6,7 +6,8 @@
         "restDays": "SAT, SUN",
         "shift": "1st Shift",
         "position": "conductor",
-        "timestamp": "2024-02-16T12:00:00Z"
+        "rawText": "Buechel",
+		"timestamp": "2024-02-16T12:00:00Z"
     },
     "008361": {
         "jobId": "BSBS04",
@@ -15,7 +16,8 @@
         "restDays": "FRI, SAT",
         "shift": "2nd Shift",
         "position": "conductor",
-        "timestamp": "2024-02-16T12:00:00Z"
+        "rawText": "Buechel",
+		"timestamp": "2024-02-16T12:00:00Z"
     },
     "008349": {
         "jobId": "LLLL15",
@@ -24,7 +26,8 @@
         "restDays": "FRI, SAT",
         "shift": "1st Shift",
         "position": "conductor",
-        "timestamp": "2024-02-16T12:00:00Z"
+        "rawText": "Market",
+		"timestamp": "2024-02-16T12:00:00Z"
     },
     "008354": {
         "jobId": "LLLL17",
@@ -33,7 +36,8 @@
         "restDays": "SAT, SUN",
         "shift": "1st Shift",
         "position": "conductor",
-        "timestamp": "2024-02-16T12:00:00Z"
+        "rawText": "Dogyard",
+		"timestamp": "2024-02-16T12:00:00Z"
     },
     "008353": {
         "jobId": "LLLL18",
@@ -42,7 +46,8 @@
         "restDays": "SUN, MON",
         "shift": "1st Shift",
         "position": "conductor",
-        "timestamp": "2024-02-16T12:00:00Z"
+        "rawText": "H yard",
+		"timestamp": "2024-02-16T12:00:00Z"
     },
     "008351": {
         "jobId": "LLLL33",
@@ -51,7 +56,8 @@
         "restDays": "THU, FRI",
         "shift": "1st Shift",
         "position": "conductor",
-        "timestamp": "2024-02-16T12:00:00Z"
+        "rawText": "L yard",
+		"timestamp": "2024-02-16T12:00:00Z"
     },
     "008360": {
         "jobId": "LLLL44",
@@ -60,7 +66,8 @@
         "restDays": "SAT, SUN",
         "shift": "2nd Shift",
         "position": "conductor",
-        "timestamp": "2024-02-16T12:00:00Z"
+        "rawText": "Riverport",
+		"timestamp": "2024-02-16T12:00:00Z"
     },
     "008339": {
         "jobId": "LLLL48",
@@ -69,7 +76,8 @@
         "restDays": "SUN, MON",
         "shift": "2nd Shift",
         "position": "conductor",
-        "timestamp": "2024-02-16T12:00:00Z"
+        "rawText": "Market",
+		"timestamp": "2024-02-16T12:00:00Z"
     },
     "008336": {
         "jobId": "LLLL49",
@@ -78,7 +86,8 @@
         "restDays": "FRI, SAT",
         "shift": "2nd Shift",
         "position": "conductor",
-        "timestamp": "2024-02-16T12:00:00Z"
+        "rawText": "H yard",
+		"timestamp": "2024-02-16T12:00:00Z"
     },
     "008356": {
         "jobId": "LLLL55",
@@ -87,7 +96,8 @@
         "restDays": "TUE, WED",
         "shift": "Mixed Shifts",
         "position": "conductor",
-        "timestamp": "2024-02-16T12:00:00Z"
+        "rawText": "T18 6:30AM SUN&MON, T33 8:00AM THUR, T15 7:00AM FRI&SAT",
+		"timestamp": "2024-02-16T12:00:00Z"
     },
     "008355": {
         "jobId": "LLLL56",
@@ -96,7 +106,8 @@
         "restDays": "SAT, SUN",
         "shift": "3rd Shift",
         "position": "conductor",
-        "timestamp": "2024-02-16T12:00:00Z"
+        "rawText": "Rubbertown",
+		"timestamp": "2024-02-16T12:00:00Z"
     },
     "008340": {
         "jobId": "LLLL57",
@@ -105,7 +116,8 @@
         "restDays": "MON, TUE",
         "shift": "3rd Shift",
         "position": "conductor",
-        "timestamp": "2024-02-16T12:00:00Z"
+        "rawText": "Pal yard",
+		"timestamp": "2024-02-16T12:00:00Z"
     },
     "008342": {
         "jobId": "LLLL69",
@@ -114,7 +126,8 @@
         "restDays": "TUE, WED",
         "shift": "3rd Shift",
         "position": "conductor",
-        "timestamp": "2024-02-16T12:00:00Z"
+        "rawText": "Market",
+		"timestamp": "2024-02-16T12:00:00Z"
     },
     "008343": {
         "jobId": "LLLL77",
@@ -123,7 +136,8 @@
         "restDays": "WED, THU",
         "shift": "Mixed Shifts",
         "position": "conductor",
-        "timestamp": "2024-02-16T12:00:00Z"
+        "rawText": "T48 3:00PM SUN&MON, T69 11:00PM TUE, T81 5:00PM FRI/SAT",
+		"timestamp": "2024-02-16T12:00:00Z"
     },
     "008348": {
         "jobId": "LLLL79",
@@ -132,7 +146,8 @@
         "restDays": "SAT, SUN",
         "shift": "2nd Shift",
         "position": "conductor",
-        "timestamp": "2024-02-16T12:00:00Z"
+        "rawText": "Fucking Bums",
+		"timestamp": "2024-02-16T12:00:00Z"
     },
     "008337": {
         "jobId": "LLLL81",
@@ -141,7 +156,8 @@
         "restDays": "FRI, SAT",
         "shift": "3rd Shift",
         "position": "conductor",
-        "timestamp": "2024-02-16T12:00:00Z"
+        "rawText": "H yard",
+		"timestamp": "2024-02-16T12:00:00Z"
     },
     "008345": {
         "jobId": "LLLL99",
@@ -150,7 +166,8 @@
         "restDays": "WED, THU",
         "shift": "Mixed Shifts",
         "position": "conductor",
-        "timestamp": "2024-02-16T12:00:00Z"
+        "rawText": "BS03 6:01AM SAT&SUN, T57 11:59PM MON&TUE, T33 8:00AM FRI",
+		"timestamp": "2024-02-16T12:00:00Z"
     },
     "008347": {
         "jobId": "BUBU04",
@@ -159,7 +176,8 @@
         "restDays": "SAT, SUN",
         "shift": "1st Shift",
         "position": "conductor",
-        "timestamp": "2024-02-16T12:00:00Z"
+        "rawText": "Buechel Utility",
+		"timestamp": "2024-02-16T12:00:00Z"
     },
     "008350": {
         "jobId": "ULUL01",
@@ -168,7 +186,8 @@
         "restDays": "FRI, SAT",
         "shift": "1st Shift",
         "position": "conductor",
-        "timestamp": "2024-02-16T12:00:00Z"
+        "rawText": "Market Utility",
+		"timestamp": "2024-02-16T12:00:00Z"
     },
     "008352": {
         "jobId": "ULUL02",
@@ -177,7 +196,8 @@
         "restDays": "SUN, MON",
         "shift": "2nd Shift",
         "position": "conductor",
-        "timestamp": "2024-02-16T12:00:00Z"
+        "rawText": "Market Utility",
+		"timestamp": "2024-02-16T12:00:00Z"
     },
     "008334": {
         "jobId": "ULUL03",
@@ -186,7 +206,8 @@
         "restDays": "TUE, WED",
         "shift": "3rd Shift",
         "position": "conductor",
-        "timestamp": "2024-02-16T12:00:00Z"
+        "rawText": "Market Utility",
+		"timestamp": "2024-02-16T12:00:00Z"
     },
     "008357": {
         "jobId": "ULUL99",
@@ -195,7 +216,8 @@
         "restDays": "WED, THU",
         "shift": "Mixed Shifts",
         "position": "conductor",
-        "timestamp": "2024-02-16T12:00:00Z"
+        "rawText": "U02 3:00PM SUN&MON, U03 11:00PM TUE, U01 7:00AM FRI&SAT",
+		"timestamp": "2024-02-16T12:00:00Z"
     },
     "007044": {
         "jobId": "PUPU90",
@@ -204,7 +226,8 @@
         "restDays": "FRI, SAT",
         "shift": "1st Shift",
         "position": "conductor",
-        "timestamp": "2024-02-16T12:00:00Z"
+        "rawText": "Pusher",
+		"timestamp": "2024-02-16T12:00:00Z"
     },
     "007052": {
         "jobId": "PUPU94",
@@ -213,7 +236,8 @@
         "restDays": "FRI, SAT",
         "shift": "2nd Shift",
         "position": "conductor",
-        "timestamp": "2024-02-16T12:00:00Z"
+        "rawText": "Pusher",
+		"timestamp": "2024-02-16T12:00:00Z"
     },
     "008864": {
         "jobId": "SSSS01",
@@ -222,6 +246,7 @@
         "restDays": "SAT, SUN",
         "shift": "1st Shift",
         "position": "conductor",
-        "timestamp": "2024-02-16T12:00:00Z"
+        "rawText": "Shelbyville",
+		"timestamp": "2024-02-16T12:00:00Z"
     }
 }
