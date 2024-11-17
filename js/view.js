@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 
     // Initialize
     try {
-        bulletins = await githubAPI.loadData();
+        bulletins = await bulletinAPI.loadData();  // Changed from githubAPI to bulletinAPI
         filteredBulletins = {...bulletins};
         renderBulletins();
     } catch (error) {
@@ -129,26 +129,13 @@ document.addEventListener('DOMContentLoaded', async function() {
 
                 <div class="modal-section full-width">
                     <h3>Original Bulletin Text</h3>
-                    <pre class="bulletin-text">${data.rawText}</pre>
+                    <pre class="bulletin-text">${data.rawText || 'Not available'}</pre>
                 </div>
             </div>
         `;
         
         modal.style.display = 'block';
     }
-
-    // Auto-refresh bulletins every 5 minutes
-    setInterval(async () => {
-        try {
-            const newBulletins = await githubAPI.loadData();
-            if (JSON.stringify(newBulletins) !== JSON.stringify(bulletins)) {
-                bulletins = newBulletins;
-                filterBulletins();
-            }
-        } catch (error) {
-            console.error('Error refreshing bulletins:', error);
-        }
-    }, 300000); // 5 minutes
 
     // Utility function
     function capitalizeFirst(string) {
