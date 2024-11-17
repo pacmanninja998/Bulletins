@@ -337,6 +337,85 @@ body {
     cursor: pointer;
 }
 
+.modal-content {
+    position: relative;
+    background-color: #fff;
+    margin: 5% auto;
+    padding: 20px;
+    width: 80%;
+    max-width: 800px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.modal h2 {
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--primary-color);
+}
+
+.modal-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.modal-section {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 6px;
+}
+
+.modal-section h3 {
+    color: var(--secondary-color);
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+}
+
+.modal-section p {
+    margin: 10px 0;
+    line-height: 1.4;
+}
+
+.modal-section.full-width {
+    grid-column: 1 / -1;
+    margin-top: 15px;
+}
+
+.bulletin-text {
+    background: #fff;
+    padding: 15px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    white-space: pre-wrap;
+    font-family: monospace;
+    margin-top: 10px;
+}
+
+.modal-footer {
+    grid-column: 1 / -1;
+    text-align: right;
+    color: #666;
+    font-size: 0.85rem;
+    margin-top: 20px;
+    padding-top: 10px;
+    border-top: 1px solid #ddd;
+}
+
+.close-button {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #666;
+}
+
+.close-button:hover {
+    color: var(--error-color);
+}
+
 /* Messages */
 .message {
     padding: 10px;
