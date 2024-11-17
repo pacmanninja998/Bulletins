@@ -11,6 +11,20 @@ document.addEventListener('DOMContentLoaded', async function() {
     const closeButton = document.querySelector('.close-button');
     let selectedBulletins = new Set();
     const selectedList = document.getElementById('selected-list');
+    const selectedBulletinsContainer = document.querySelector('.selected-bulletins');
+
+    // Create and add drawer toggle button
+    const drawerToggle = document.createElement('div');
+    drawerToggle.className = 'drawer-toggle';
+    drawerToggle.innerHTML = '<span class="arrow">◄</span>';
+    document.body.appendChild(drawerToggle);
+
+    // Drawer toggle functionality
+    drawerToggle.addEventListener('click', () => {
+        const isOpen = selectedBulletinsContainer.classList.toggle('open');
+        drawerToggle.classList.toggle('open');
+        drawerToggle.querySelector('.arrow').textContent = isOpen ? '►' : '◄';
+    });
 
     let bulletins = {};
     let filteredBulletins = {};
@@ -144,6 +158,11 @@ document.addEventListener('DOMContentLoaded', async function() {
     function handleCardSelection(event, bulletinNumber) {
         if (event.target.checked) {
             selectedBulletins.add(bulletinNumber);
+            if (window.innerWidth <= 768) {
+                selectedBulletinsContainer.classList.add('open');
+                drawerToggle.classList.add('open');
+                drawerToggle.querySelector('.arrow').textContent = '►';
+            }
         } else {
             selectedBulletins.delete(bulletinNumber);
         }
@@ -159,7 +178,7 @@ document.addEventListener('DOMContentLoaded', async function() {
                         <div class="drag-handle" touch-action="none">≡</div>
                         <div class="selected-item-content">
                             <div><strong>${data.jobId}</strong></div>
-                            <div class="bulletin-number" onclick="copyBulletinNumber('${number}')">Bulletin: ${number}</div>
+                            <div class="bulletin-number" onclick="copyBulletinNumber('${number}')">${number}</div>
                             <div>Show up: ${data.showUpTime}</div>
                             <div>Rest Days: ${data.restDays}</div>
                         </div>
@@ -174,7 +193,6 @@ document.addEventListener('DOMContentLoaded', async function() {
     function copyBulletinNumber(number) {
         navigator.clipboard.writeText(number)
             .then(() => {
-                // Show a brief notification
                 const notification = document.createElement('div');
                 notification.className = 'copy-notification';
                 notification.textContent = 'Bulletin number copied!';
@@ -190,23 +208,40 @@ document.addEventListener('DOMContentLoaded', async function() {
             new Sortable(container, {
                 animation: 150,
                 handle: '.drag-handle',
-                delay: 100, // Delay for touch devices
-                delayOnTouchOnly: true, // Only add delay for touch devices
-                touchStartThreshold: 5, // Pixels to move before drag starts
-                forceFallback: false, // Better mobile performance
-                fallbackTolerance: 3,
+                delay: 250,
+                delayOnTouchOnly: true,
+                touchStartThreshold: 10,
+                fallbackTolerance: 10,
+                forceFallback: true,
                 dragClass: "sortable-drag",
                 ghostClass: "sortable-ghost",
                 chosenClass: "sortable-chosen",
+                dragOverClass: "sortable-drag-over",
+                scroll: true,
+                scrollSensitivity: 30,
+                scrollSpeed: 10,
                 onStart: function(evt) {
-                    document.body.style.overflow = 'hidden'; // Prevent page scroll while dragging
+                    document.body.style.overflow = 'hidden';
+                    evt.item.classList.add('dragging');
                 },
                 onEnd: function(evt) {
-                    document.body.style.overflow = ''; // Restore page scroll
-                    // Update the selectedBulletins Set to maintain the new order
+                    document.body.style.overflow = '';
+                    evt.item.classList.remove('dragging');
                     selectedBulletins = new Set(
                         Array.from(container.children).map(el => el.dataset.number)
                     );
+                },
+                onChange: function(evt) {
+                    // Remove existing drop indicators
+                    const indicators = container.querySelectorAll('.drop-indicator');
+                    indicators.forEach(indicator => indicator.remove());
+                    
+                    // Add new drop indicator
+                    if (evt.dragged && evt.related) {
+                        const indicator = document.createElement('div');
+                        indicator.className = 'drop-indicator';
+                        evt.related.parentNode.insertBefore(indicator, evt.related);
+                    }
                 }
             });
         }
