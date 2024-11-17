@@ -153,7 +153,7 @@ document.addEventListener('DOMContentLoaded', async function() {
                     ${selectedBulletins.has(number) ? 'checked' : ''}
                     onchange="handleCardSelection(event, '${number}')">
                 <div class="bulletin-header">
-                    <h3>Job ID: ${data.jobId || 'N/A'}</h3>
+                    <h3>${data.jobId || 'N/A'}</h3>
                 </div>
                 <div class="bulletin-details">
                     <p><strong>Bulletin:</strong> ${number}</p>
