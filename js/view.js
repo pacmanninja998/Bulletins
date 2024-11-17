@@ -154,6 +154,10 @@ document.addEventListener('DOMContentLoaded', async function() {
             </div>
         `;
     }
+	
+	function capitalizeFirst(str) {
+        return str.charAt(0).toUpperCase() + str.slice(1);
+    }
 
     function handleCardSelection(event, bulletinNumber) {
         if (event.target.checked) {
