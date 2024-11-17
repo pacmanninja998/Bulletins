@@ -270,6 +270,44 @@ body {
     transform: translateY(-2px);
 }
 
+.bulletin-footer {
+    margin-top: auto;
+    padding-top: 10px;
+    border-top: 1px solid #eee;
+    font-size: 0.8rem;
+    color: #666;
+    text-align: right;
+}
+
+.bulletin-card {
+    display: flex;
+    flex-direction: column;
+    min-height: 200px; /* Adjust as needed */
+}
+
+.bulletin-header {
+    margin-bottom: 15px;
+}
+
+.bulletin-header h3 {
+    color: var(--primary-color);
+    font-size: 1.2rem;
+    margin: 0;
+}
+
+.modal-footer {
+    margin-top: 20px;
+    padding-top: 10px;
+    border-top: 1px solid #eee;
+    font-size: 0.8rem;
+    color: #666;
+    text-align: right;
+}
+
+.update-date {
+    font-style: italic;
+}
+
 /* Modal */
 .modal {
     display: none;

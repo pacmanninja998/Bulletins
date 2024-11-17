@@ -101,43 +101,46 @@ document.addEventListener('DOMContentLoaded', async function() {
                     ${data.jobName ? `<p><strong>Job Name:</strong> ${data.jobName}</p>` : ''}
                 </div>
 				<div class="bulletin-footer">
-                    <span class="bulletin-date"><h5>Updated:</h5>${date}</span>
+                    <span class="bulletin-date">Last updated: ${date}</span>
                 </div>
             </div>
         `;
     }
 
-    function showBulletinDetails(number) {
-        const data = bulletins[number];
-        const date = new Date(data.timestamp).toLocaleString();
-        
-        modalContent.innerHTML = `
-            <h2>Bulletin ${number} Details</h2>
-            <div class="modal-grid">
-                <div class="modal-section">
-                    <h3>Basic Information</h3>
-                    <p><strong>Job ID:</strong> ${data.jobId || 'N/A'}</p>
-                    <p><strong>Position:</strong> ${capitalizeFirst(data.position)}</p>
-                    <p><strong>Date Added:</strong> ${date}</p>
-                    ${data.jobName ? `<p><strong>Job Name:</strong> ${data.jobName}</p>` : ''}
-                </div>
-                
-                <div class="modal-section">
-                    <h3>Schedule Information</h3>
-                    <p><strong>Show Up Time:</strong> ${data.showUpTime}</p>
-                    <p><strong>Shift:</strong> ${data.shift}</p>
-                    <p><strong>Rest Days:</strong> ${data.restDays}</p>
-                </div>
+	function showBulletinDetails(number) {
+		const data = bulletins[number];
+		const date = new Date(data.timestamp).toLocaleString();
+    
+		modalContent.innerHTML = `
+			<h2>Job ID: ${data.jobId || 'N/A'}</h2>
+			<div class="modal-grid">
+				<div class="modal-section">
+					<h3>Basic Information</h3>
+					<p><strong>Bulletin Number:</strong> ${number}</p>
+					<p><strong>Position:</strong> ${capitalizeFirst(data.position)}</p>
+					${data.jobName ? `<p><strong>Job Name:</strong> ${data.jobName}</p>` : ''}
+				</div>
+            
+				<div class="modal-section">
+					<h3>Schedule Information</h3>
+					<p><strong>Show Up Time:</strong> ${data.showUpTime}</p>
+					<p><strong>Shift:</strong> ${data.shift}</p>
+					<p><strong>Rest Days:</strong> ${data.restDays}</p>
+				</div>
 
-                <div class="modal-section full-width">
-                    <h3>Original Bulletin Text</h3>
-                    <pre class="bulletin-text">${data.rawText || 'Not available'}</pre>
-                </div>
-            </div>
-        `;
-        
-        modal.style.display = 'block';
-    }
+				<div class="modal-section full-width">
+					<h3>Original Bulletin Text</h3>
+					<pre class="bulletin-text">${data.rawText || 'Not available'}</pre>
+				</div>
+
+				<div class="modal-footer">
+					<span class="update-date">Last updated: ${date}</span>
+				</div>
+			</div>
+		`;
+    
+		modal.style.display = 'block';
+	}
 
     // Utility function
     function capitalizeFirst(string) {
