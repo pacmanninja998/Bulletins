@@ -25,6 +25,17 @@ document.addEventListener('DOMContentLoaded', async function() {
         drawerToggle.classList.toggle('open');
         drawerToggle.querySelector('.arrow').textContent = isOpen ? '►' : '◄';
     });
+	
+	// Close drawer when clicking outside
+    document.addEventListener('click', (e) => {
+        if (selectedBulletinsContainer.classList.contains('open') && 
+            !selectedBulletinsContainer.contains(e.target) && 
+            !drawerToggle.contains(e.target)) {
+            selectedBulletinsContainer.classList.remove('open');
+            drawerToggle.classList.remove('open');
+            drawerToggle.querySelector('.arrow').textContent = '◄';
+        }
+    });
 
     let bulletins = {};
     let filteredBulletins = {};
