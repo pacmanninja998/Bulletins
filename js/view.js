@@ -90,16 +90,18 @@ document.addEventListener('DOMContentLoaded', async function() {
         return `
             <div class="bulletin-card" data-number="${number}">
                 <div class="bulletin-header">
-                    <h3>Bulletin ${number}</h3>
-                    <span class="bulletin-date">${date}</span>
+                    <h3>Job ID: ${data.jobId || 'N/A'}</h3>
                 </div>
                 <div class="bulletin-details">
-                    <p><strong>Job ID:</strong> ${data.jobId || 'N/A'}</p>
+                    <p><strong>Bulletin:</strong> ${number}</p>
                     <p><strong>Position:</strong> ${capitalizeFirst(data.position)}</p>
                     <p><strong>Show Up:</strong> ${data.showUpTime}</p>
                     <p><strong>Shift:</strong> ${data.shift}</p>
                     <p><strong>Rest Days:</strong> ${data.restDays}</p>
                     ${data.jobName ? `<p><strong>Job Name:</strong> ${data.jobName}</p>` : ''}
+                </div>
+				<div class="bulletin-footer">
+                    <span class="bulletin-date"><h5>Updated:</h5>${date}</span>
                 </div>
             </div>
         `;
