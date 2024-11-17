@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Bulletins - Norfolk Bulletin System</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <nav class="main-nav">
+        <div class="nav-container">
+            <h1>Norfolk Bulletin System</h1>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="edit.html">Edit Bulletins</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="bulletin-viewer">
+            <div class="filters-container">
+                <div class="search-box">
+                    <input type="text" id="search-input" placeholder="Search bulletins...">
+                </div>
+                
+                <div class="filter-group">
+                    <select id="shift-filter">
+                        <option value="">All Shifts</option>
+                        <option value="1st Shift">1st Shift</option>
+                        <option value="2nd Shift">2nd Shift</option>
+                        <option value="3rd Shift">3rd Shift</option>
+                        <option value="Pool Job">Pool Job</option>
+                    </select>
+
+                    <select id="position-filter">
+                        <option value="">All Positions</option>
+                        <option value="engineer">Engineer</option>
+                        <option value="conductor">Conductor</option>
+                    </select>
+
+                    <select id="rest-days-filter">
+                        <option value="">All Rest Days</option>
+                        <option value="Sat-Sun">Sat-Sun</option>
+                        <option value="Sun-Mon">Sun-Mon</option>
+                        <option value="Mon-Tue">Mon-Tue</option>
+                        <option value="Tue-Wed">Tue-Wed</option>
+                        <option value="Wed-Thu">Wed-Thu</option>
+                        <option value="Thu-Fri">Thu-Fri</option>
+                        <option value="Fri-Sat">Fri-Sat</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="bulletins-grid" id="bulletins-grid">
+                <!-- Dynamically filled by JavaScript -->
+            </div>
+
+            <div id="bulletin-modal" class="modal">
+                <div class="modal-content">
+                    <span class="close-button">&times;</span>
+                    <div id="modal-content"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/github-api.js"></script>
+    <script src="js/view.js"></script>
+</body>
+</html>

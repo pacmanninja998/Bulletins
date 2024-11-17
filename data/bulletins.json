@@ -1,0 +1,227 @@
+{
+    "008338": {
+        "jobId": "BSBS03",
+        "bulletinNumber": "008338",
+        "showUpTime": "6:01AM",
+        "restDays": "SAT, SUN",
+        "shift": "1st Shift",
+        "position": "conductor",
+        "timestamp": "2024-02-16T12:00:00Z"
+    },
+    "008361": {
+        "jobId": "BSBS04",
+        "bulletinNumber": "008361",
+        "showUpTime": "6:01PM",
+        "restDays": "FRI, SAT",
+        "shift": "2nd Shift",
+        "position": "conductor",
+        "timestamp": "2024-02-16T12:00:00Z"
+    },
+    "008349": {
+        "jobId": "LLLL15",
+        "bulletinNumber": "008349",
+        "showUpTime": "7:00AM",
+        "restDays": "FRI, SAT",
+        "shift": "1st Shift",
+        "position": "conductor",
+        "timestamp": "2024-02-16T12:00:00Z"
+    },
+    "008354": {
+        "jobId": "LLLL17",
+        "bulletinNumber": "008354",
+        "showUpTime": "6:30AM",
+        "restDays": "SAT, SUN",
+        "shift": "1st Shift",
+        "position": "conductor",
+        "timestamp": "2024-02-16T12:00:00Z"
+    },
+    "008353": {
+        "jobId": "LLLL18",
+        "bulletinNumber": "008353",
+        "showUpTime": "6:30AM",
+        "restDays": "SUN, MON",
+        "shift": "1st Shift",
+        "position": "conductor",
+        "timestamp": "2024-02-16T12:00:00Z"
+    },
+    "008351": {
+        "jobId": "LLLL33",
+        "bulletinNumber": "008351",
+        "showUpTime": "8:00AM",
+        "restDays": "THU, FRI",
+        "shift": "1st Shift",
+        "position": "conductor",
+        "timestamp": "2024-02-16T12:00:00Z"
+    },
+    "008360": {
+        "jobId": "LLLL44",
+        "bulletinNumber": "008360",
+        "showUpTime": "2:30PM",
+        "restDays": "SAT, SUN",
+        "shift": "2nd Shift",
+        "position": "conductor",
+        "timestamp": "2024-02-16T12:00:00Z"
+    },
+    "008339": {
+        "jobId": "LLLL48",
+        "bulletinNumber": "008339",
+        "showUpTime": "3:00PM",
+        "restDays": "SUN, MON",
+        "shift": "2nd Shift",
+        "position": "conductor",
+        "timestamp": "2024-02-16T12:00:00Z"
+    },
+    "008336": {
+        "jobId": "LLLL49",
+        "bulletinNumber": "008336",
+        "showUpTime": "2:30PM",
+        "restDays": "FRI, SAT",
+        "shift": "2nd Shift",
+        "position": "conductor",
+        "timestamp": "2024-02-16T12:00:00Z"
+    },
+    "008356": {
+        "jobId": "LLLL55",
+        "bulletinNumber": "008356",
+        "showUpTime": "6:30AM, 8:00AM, 7:00AM",
+        "restDays": "TUE, WED",
+        "shift": "Mixed Shifts",
+        "position": "conductor",
+        "timestamp": "2024-02-16T12:00:00Z"
+    },
+    "008355": {
+        "jobId": "LLLL56",
+        "bulletinNumber": "008355",
+        "showUpTime": "10:30PM",
+        "restDays": "SAT, SUN",
+        "shift": "3rd Shift",
+        "position": "conductor",
+        "timestamp": "2024-02-16T12:00:00Z"
+    },
+    "008340": {
+        "jobId": "LLLL57",
+        "bulletinNumber": "008340",
+        "showUpTime": "11:59PM",
+        "restDays": "MON, TUE",
+        "shift": "3rd Shift",
+        "position": "conductor",
+        "timestamp": "2024-02-16T12:00:00Z"
+    },
+    "008342": {
+        "jobId": "LLLL69",
+        "bulletinNumber": "008342",
+        "showUpTime": "11:00PM",
+        "restDays": "TUE, WED",
+        "shift": "3rd Shift",
+        "position": "conductor",
+        "timestamp": "2024-02-16T12:00:00Z"
+    },
+    "008343": {
+        "jobId": "LLLL77",
+        "bulletinNumber": "008343",
+        "showUpTime": "3:00PM, 11:00PM, 5:00PM",
+        "restDays": "WED, THU",
+        "shift": "Mixed Shifts",
+        "position": "conductor",
+        "timestamp": "2024-02-16T12:00:00Z"
+    },
+    "008348": {
+        "jobId": "LLLL79",
+        "bulletinNumber": "008348",
+        "showUpTime": "6:00PM",
+        "restDays": "SAT, SUN",
+        "shift": "2nd Shift",
+        "position": "conductor",
+        "timestamp": "2024-02-16T12:00:00Z"
+    },
+    "008337": {
+        "jobId": "LLLL81",
+        "bulletinNumber": "008337",
+        "showUpTime": "10:30PM",
+        "restDays": "FRI, SAT",
+        "shift": "3rd Shift",
+        "position": "conductor",
+        "timestamp": "2024-02-16T12:00:00Z"
+    },
+    "008345": {
+        "jobId": "LLLL99",
+        "bulletinNumber": "008345",
+        "showUpTime": "6:01AM, 11:59PM, 8:00AM",
+        "restDays": "WED, THU",
+        "shift": "Mixed Shifts",
+        "position": "conductor",
+        "timestamp": "2024-02-16T12:00:00Z"
+    },
+    "008347": {
+        "jobId": "BUBU04",
+        "bulletinNumber": "008347",
+        "showUpTime": "8:00AM",
+        "restDays": "SAT, SUN",
+        "shift": "1st Shift",
+        "position": "conductor",
+        "timestamp": "2024-02-16T12:00:00Z"
+    },
+    "008350": {
+        "jobId": "ULUL01",
+        "bulletinNumber": "008350",
+        "showUpTime": "7:00AM",
+        "restDays": "FRI, SAT",
+        "shift": "1st Shift",
+        "position": "conductor",
+        "timestamp": "2024-02-16T12:00:00Z"
+    },
+    "008352": {
+        "jobId": "ULUL02",
+        "bulletinNumber": "008352",
+        "showUpTime": "3:00PM",
+        "restDays": "SUN, MON",
+        "shift": "2nd Shift",
+        "position": "conductor",
+        "timestamp": "2024-02-16T12:00:00Z"
+    },
+    "008334": {
+        "jobId": "ULUL03",
+        "bulletinNumber": "008334",
+        "showUpTime": "11:00PM",
+        "restDays": "TUE, WED",
+        "shift": "3rd Shift",
+        "position": "conductor",
+        "timestamp": "2024-02-16T12:00:00Z"
+    },
+    "008357": {
+        "jobId": "ULUL99",
+        "bulletinNumber": "008357",
+        "showUpTime": "3:00PM, 11:00PM, 7:00AM",
+        "restDays": "WED, THU",
+        "shift": "Mixed Shifts",
+        "position": "conductor",
+        "timestamp": "2024-02-16T12:00:00Z"
+    },
+    "007044": {
+        "jobId": "PUPU90",
+        "bulletinNumber": "007044",
+        "showUpTime": "5:00AM",
+        "restDays": "FRI, SAT",
+        "shift": "1st Shift",
+        "position": "conductor",
+        "timestamp": "2024-02-16T12:00:00Z"
+    },
+    "007052": {
+        "jobId": "PUPU94",
+        "bulletinNumber": "007052",
+        "showUpTime": "5:00PM",
+        "restDays": "FRI, SAT",
+        "shift": "2nd Shift",
+        "position": "conductor",
+        "timestamp": "2024-02-16T12:00:00Z"
+    },
+    "008864": {
+        "jobId": "SSSS01",
+        "bulletinNumber": "008864",
+        "showUpTime": "6:30AM",
+        "restDays": "SAT, SUN",
+        "shift": "1st Shift",
+        "position": "conductor",
+        "timestamp": "2024-02-16T12:00:00Z"
+    }
+}
