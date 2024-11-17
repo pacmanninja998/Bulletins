@@ -41,13 +41,14 @@
 
                     <select id="rest-days-filter">
                         <option value="">All Rest Days</option>
-                        <option value="Sat-Sun">Sat-Sun</option>
-                        <option value="Sun-Mon">Sun-Mon</option>
-                        <option value="Mon-Tue">Mon-Tue</option>
-                        <option value="Tue-Wed">Tue-Wed</option>
-                        <option value="Wed-Thu">Wed-Thu</option>
-                        <option value="Thu-Fri">Thu-Fri</option>
-                        <option value="Fri-Sat">Fri-Sat</option>
+						<option value="weekend">Weekend Rest Days</option>
+                        <option value="SAT, SUN">Sat-Sun</option>
+                        <option value="SUN, MON">Sun-Mon</option>
+                        <option value="MON, TUE">Mon-Tue</option>
+                        <option value="TUE, WED">Tue-Wed</option>
+                        <option value="WED, THU">Wed-Thu</option>
+                        <option value="THU, FRI">Thu-Fri</option>
+                        <option value="FRI, SAT">Fri-Sat</option>
                     </select>
                 </div>
             </div>
@@ -60,6 +61,7 @@
                 <div class="modal-content">
                     <span class="close-button">&times;</span>
                     <div id="modal-content"></div>
+					<!-- Dynamically filled by JavaScript -->
                 </div>
             </div>
         </div>

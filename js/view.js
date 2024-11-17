@@ -32,41 +32,47 @@ document.addEventListener('DOMContentLoaded', async function() {
         if (e.target === modal) modal.style.display = 'none';
     });
 
-    function filterBulletins() {
-        const searchTerm = searchInput.value.toLowerCase();
-        const shiftValue = shiftFilter.value.toLowerCase();
-        const positionValue = positionFilter.value.toLowerCase();
-        const restDaysValue = restDaysFilter.value.toLowerCase();
+	function filterBulletins() {
+		const searchTerm = searchInput.value.toLowerCase();
+		const shiftValue = shiftFilter.value.toLowerCase();
+		const positionValue = positionFilter.value.toLowerCase();
+		const restDaysValue = restDaysFilter.value;
 
-        filteredBulletins = Object.entries(bulletins).reduce((acc, [number, data]) => {
-            // Search term filter
-            const matchesSearch = !searchTerm || 
-                number.includes(searchTerm) ||
-                data.jobId?.toLowerCase().includes(searchTerm) ||
-                data.jobName?.toLowerCase().includes(searchTerm) ||
-                data.showUpTime.toLowerCase().includes(searchTerm) ||
-                data.restDays.toLowerCase().includes(searchTerm);
+		filteredBulletins = Object.entries(bulletins).reduce((acc, [number, data]) => {
+			// Search term filter
+			const matchesSearch = !searchTerm || 
+				number.includes(searchTerm) ||
+				data.jobId?.toLowerCase().includes(searchTerm) ||
+				data.jobName?.toLowerCase().includes(searchTerm) ||
+				data.showUpTime.toLowerCase().includes(searchTerm) ||
+				data.restDays.toLowerCase().includes(searchTerm);
 
-            // Shift filter
-            const matchesShift = !shiftValue || 
-                data.shift.toLowerCase() === shiftValue;
+			// Shift filter
+			const matchesShift = !shiftValue || 
+				data.shift.toLowerCase() === shiftValue;
 
-            // Position filter
-            const matchesPosition = !positionValue || 
-                data.position.toLowerCase() === positionValue;
+			// Position filter
+			const matchesPosition = !positionValue || 
+				data.position.toLowerCase() === positionValue;
 
-            // Rest days filter
-            const matchesRestDays = !restDaysValue || 
-                data.restDays.toLowerCase().includes(restDaysValue);
+			// Rest days filter
+			const matchesRestDays = !restDaysValue || 
+				(restDaysValue === 'weekend' ? 
+					// Check for any weekend rest days combination
+					(data.restDays.includes('FRI, SAT') || 
+					data.restDays.includes('SAT, SUN') || 
+					data.restDays.includes('SUN, MON')) :
+					// Regular rest days matching
+					data.restDays.includes(restDaysValue));
 
-            if (matchesSearch && matchesShift && matchesPosition && matchesRestDays) {
-                acc[number] = data;
-            }
-            return acc;
-        }, {});
+			if (matchesSearch && matchesShift && matchesPosition && matchesRestDays) {
+				acc[number] = data;
+			}
+			return acc;
+		}, {});
 
-        renderBulletins();
-    }
+		renderBulletins();
+	}
 
     function renderBulletins() {
         if (Object.keys(filteredBulletins).length === 0) {
@@ -112,7 +118,10 @@ document.addEventListener('DOMContentLoaded', async function() {
 		const date = new Date(data.timestamp).toLocaleString();
     
 		modalContent.innerHTML = `
-			<h2>Job ID: ${data.jobId || 'N/A'}</h2>
+			<div class="modal-header">
+				<h2>Job ID: ${data.jobId || 'N/A'}</h2>
+				<span class="close-button">&times;</span>
+			</div>
 			<div class="modal-grid">
 				<div class="modal-section">
 					<h3>Basic Information</h3>
@@ -130,7 +139,9 @@ document.addEventListener('DOMContentLoaded', async function() {
 
 				<div class="modal-section full-width">
 					<h3>Original Bulletin Text</h3>
-					<pre class="bulletin-text">${data.rawText || 'Not available'}</pre>
+					<div class="bulletin-text">
+						${data.rawText || 'Not available'}
+					</div>
 				</div>
 
 				<div class="modal-footer">
@@ -140,6 +151,10 @@ document.addEventListener('DOMContentLoaded', async function() {
 		`;
     
 		modal.style.display = 'block';
+
+		// Re-attach close button event listener
+		const newCloseButton = modalContent.querySelector('.close-button');
+		newCloseButton.addEventListener('click', () => modal.style.display = 'none');
 	}
 
     // Utility function
