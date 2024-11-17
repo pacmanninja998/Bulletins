@@ -6,7 +6,7 @@
         "restDays": "SAT, SUN",
         "shift": "1st Shift",
         "position": "conductor",
-        "rawText": "Buechel",
+        "comments": "Buechel",
 		"timestamp": "2024-02-16T12:00:00Z"
     },
     "008361": {
@@ -16,7 +16,7 @@
         "restDays": "FRI, SAT",
         "shift": "2nd Shift",
         "position": "conductor",
-        "rawText": "Buechel",
+        "comments": "Buechel",
 		"timestamp": "2024-02-16T12:00:00Z"
     },
     "008349": {
@@ -26,7 +26,7 @@
         "restDays": "FRI, SAT",
         "shift": "1st Shift",
         "position": "conductor",
-        "rawText": "Market",
+        "comments": "Market",
 		"timestamp": "2024-02-16T12:00:00Z"
     },
     "008354": {
@@ -36,7 +36,7 @@
         "restDays": "SAT, SUN",
         "shift": "1st Shift",
         "position": "conductor",
-        "rawText": "Dogyard",
+        "comments": "Dogyard",
 		"timestamp": "2024-02-16T12:00:00Z"
     },
     "008353": {
@@ -46,7 +46,7 @@
         "restDays": "SUN, MON",
         "shift": "1st Shift",
         "position": "conductor",
-        "rawText": "H yard",
+        "comments": "H yard",
 		"timestamp": "2024-02-16T12:00:00Z"
     },
     "008351": {
@@ -56,7 +56,7 @@
         "restDays": "THU, FRI",
         "shift": "1st Shift",
         "position": "conductor",
-        "rawText": "L yard",
+        "comments": "L yard",
 		"timestamp": "2024-02-16T12:00:00Z"
     },
     "008360": {
@@ -66,7 +66,7 @@
         "restDays": "SAT, SUN",
         "shift": "2nd Shift",
         "position": "conductor",
-        "rawText": "Riverport",
+        "comments": "Riverport",
 		"timestamp": "2024-02-16T12:00:00Z"
     },
     "008339": {
@@ -76,7 +76,7 @@
         "restDays": "SUN, MON",
         "shift": "2nd Shift",
         "position": "conductor",
-        "rawText": "Market",
+        "comments": "Market",
 		"timestamp": "2024-02-16T12:00:00Z"
     },
     "008336": {
@@ -86,7 +86,7 @@
         "restDays": "FRI, SAT",
         "shift": "2nd Shift",
         "position": "conductor",
-        "rawText": "H yard",
+        "comments": "H yard",
 		"timestamp": "2024-02-16T12:00:00Z"
     },
     "008356": {
@@ -96,7 +96,7 @@
         "restDays": "TUE, WED",
         "shift": "Mixed Shifts",
         "position": "conductor",
-        "rawText": "T18 6:30AM SUN&MON, T33 8:00AM THUR, T15 7:00AM FRI&SAT",
+        "comments": "T18 6:30AM SUN&MON, T33 8:00AM THUR, T15 7:00AM FRI&SAT",
 		"timestamp": "2024-02-16T12:00:00Z"
     },
     "008355": {
@@ -106,7 +106,7 @@
         "restDays": "SAT, SUN",
         "shift": "3rd Shift",
         "position": "conductor",
-        "rawText": "Rubbertown",
+        "comments": "Rubbertown",
 		"timestamp": "2024-02-16T12:00:00Z"
     },
     "008340": {
@@ -116,7 +116,7 @@
         "restDays": "MON, TUE",
         "shift": "3rd Shift",
         "position": "conductor",
-        "rawText": "Pal yard",
+        "comments": "Pal yard",
 		"timestamp": "2024-02-16T12:00:00Z"
     },
     "008342": {
@@ -126,7 +126,7 @@
         "restDays": "TUE, WED",
         "shift": "3rd Shift",
         "position": "conductor",
-        "rawText": "Market",
+        "comments": "Market",
 		"timestamp": "2024-02-16T12:00:00Z"
     },
     "008343": {
@@ -136,7 +136,7 @@
         "restDays": "WED, THU",
         "shift": "Mixed Shifts",
         "position": "conductor",
-        "rawText": "T48 3:00PM SUN&MON, T69 11:00PM TUE, T81 5:00PM FRI/SAT",
+        "comments": "T48 3:00PM SUN&MON, T69 11:00PM TUE, T81 5:00PM FRI/SAT",
 		"timestamp": "2024-02-16T12:00:00Z"
     },
     "008348": {
@@ -146,7 +146,7 @@
         "restDays": "SAT, SUN",
         "shift": "2nd Shift",
         "position": "conductor",
-        "rawText": "Fucking Bums",
+        "comments": "Fucking Bums",
 		"timestamp": "2024-02-16T12:00:00Z"
     },
     "008337": {
@@ -156,7 +156,7 @@
         "restDays": "FRI, SAT",
         "shift": "3rd Shift",
         "position": "conductor",
-        "rawText": "H yard",
+        "comments": "H yard",
 		"timestamp": "2024-02-16T12:00:00Z"
     },
     "008345": {
@@ -166,7 +166,7 @@
         "restDays": "WED, THU",
         "shift": "Mixed Shifts",
         "position": "conductor",
-        "rawText": "BS03 6:01AM SAT&SUN, T57 11:59PM MON&TUE, T33 8:00AM FRI",
+        "comments": "BS03 6:01AM SAT&SUN, T57 11:59PM MON&TUE, T33 8:00AM FRI",
 		"timestamp": "2024-02-16T12:00:00Z"
     },
     "008347": {
@@ -176,7 +176,7 @@
         "restDays": "SAT, SUN",
         "shift": "1st Shift",
         "position": "conductor",
-        "rawText": "Buechel Utility",
+        "comments": "Buechel Utility",
 		"timestamp": "2024-02-16T12:00:00Z"
     },
     "008350": {
@@ -186,7 +186,7 @@
         "restDays": "FRI, SAT",
         "shift": "1st Shift",
         "position": "conductor",
-        "rawText": "Market Utility",
+        "comments": "Market Utility",
 		"timestamp": "2024-02-16T12:00:00Z"
     },
     "008352": {
@@ -196,7 +196,7 @@
         "restDays": "SUN, MON",
         "shift": "2nd Shift",
         "position": "conductor",
-        "rawText": "Market Utility",
+        "comments": "Market Utility",
 		"timestamp": "2024-02-16T12:00:00Z"
     },
     "008334": {
@@ -206,7 +206,7 @@
         "restDays": "TUE, WED",
         "shift": "3rd Shift",
         "position": "conductor",
-        "rawText": "Market Utility",
+        "comments": "Market Utility",
 		"timestamp": "2024-02-16T12:00:00Z"
     },
     "008357": {
@@ -216,7 +216,7 @@
         "restDays": "WED, THU",
         "shift": "Mixed Shifts",
         "position": "conductor",
-        "rawText": "U02 3:00PM SUN&MON, U03 11:00PM TUE, U01 7:00AM FRI&SAT",
+        "comments": "U02 3:00PM SUN&MON, U03 11:00PM TUE, U01 7:00AM FRI&SAT",
 		"timestamp": "2024-02-16T12:00:00Z"
     },
     "007044": {
@@ -226,7 +226,7 @@
         "restDays": "FRI, SAT",
         "shift": "1st Shift",
         "position": "conductor",
-        "rawText": "Pusher",
+        "comments": "Pusher",
 		"timestamp": "2024-02-16T12:00:00Z"
     },
     "007052": {
@@ -236,7 +236,7 @@
         "restDays": "FRI, SAT",
         "shift": "2nd Shift",
         "position": "conductor",
-        "rawText": "Pusher",
+        "comments": "Pusher",
 		"timestamp": "2024-02-16T12:00:00Z"
     },
     "008864": {
@@ -246,7 +246,7 @@
         "restDays": "SAT, SUN",
         "shift": "1st Shift",
         "position": "conductor",
-        "rawText": "Shelbyville",
+        "comments": "Shelbyville",
 		"timestamp": "2024-02-16T12:00:00Z"
     }
 }

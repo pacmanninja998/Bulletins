@@ -247,52 +247,61 @@ document.addEventListener('DOMContentLoaded', async function() {
         }
     }
 
-    function showBulletinDetails(number) {
-        const data = bulletins[number];
-        const date = new Date(data.timestamp).toLocaleString();
-    
-        modalContent.innerHTML = `
-            <div class="modal-header">
-                <h2>Job ID: ${data.jobId || 'N/A'}</h2>
-                <span class="close-button">&times;</span>
-            </div>
-            <div class="modal-grid">
-                <div class="modal-section">
-                    <h3>Basic Information</h3>
-                    <p><strong>Bulletin Number:</strong> ${number}</p>
-                    <p><strong>Position:</strong> ${capitalizeFirst(data.position)}</p>
-                    ${data.jobName ? `<p><strong>Job Name:</strong> ${data.jobName}</p>` : ''}
-                </div>
-            
-                <div class="modal-section">
-                    <h3>Schedule Information</h3>
-                    <p><strong>Show Up Time:</strong> ${data.showUpTime}</p>
-                    <p><strong>Shift:</strong> ${data.shift}</p>
-                    <p><strong>Rest Days:</strong> ${data.restDays}</p>
-                </div>
+	function showBulletinDetails(number) {
+		const data = bulletins[number];
+		const date = new Date(data.timestamp).toLocaleString();
 
-                <div class="modal-section full-width">
-                    <h3>Original Bulletin Text</h3>
-                    <div class="bulletin-text">
-                        ${data.rawText || 'Not available'}
-                    </div>
-                </div>
+		modalContent.innerHTML = `
+			<div class="modal-header">
+				<h2>Job ID: ${data.jobId || 'N/A'}</h2>
+				<span class="close-button">&times;</span>
+			</div>
+			<div class="modal-grid">
+				<div class="modal-section">
+					<h3>Basic Information</h3>
+					<p><strong>Bulletin Number:</strong> ${number}</p>
+					<p><strong>Position:</strong> ${capitalizeFirst(data.position)}</p>
+					<p><strong>Location:</strong> ${data.rawText}</p>
+					${data.jobName ? `<p><strong>Job Name:</strong> ${data.jobName}</p>` : ''}
+				</div>
+			
+				<div class="modal-section">
+					<h3>Schedule Information</h3>
+					<p><strong>Show Up Time:</strong> ${data.showUpTime}</p>
+					<p><strong>Shift:</strong> ${data.shift}</p>
+					<p><strong>Rest Days:</strong> ${data.restDays}</p>
+				</div>
 
-                <div class="modal-footer">
-                    <span class="update-date">Last updated: ${date}</span>
-                </div>
-            </div>
-        `;
-    
-        modal.style.display = 'block';
+				<div class="modal-footer">
+					<span class="update-date">Last updated: ${date}</span>
+					<button class="toggle-bulletin-text" onclick="toggleBulletinText(event)">Show Full Bulletin</button>
+					<div class="bulletin-text-container" style="display: none;">
+						<div class="bulletin-text">
+							${data.rawText || 'Not available'}
+						</div>
+					</div>
+				</div>
+			</div>
+		`;
 
-        // Re-attach close button event listener
-        const newCloseButton = modalContent.querySelector('.close-button');
-        newCloseButton.addEventListener('click', () => modal.style.display = 'none');
-    }
+		modal.style.display = 'block';
 
-    // Utility function
-    function capitalizeFirst(string) {
-        return string.charAt(0).toUpperCase() + string.slice(1);
-    }
+		// Re-attach close button event listener
+		const newCloseButton = modalContent.querySelector('.close-button');
+		newCloseButton.addEventListener('click', () => modal.style.display = 'none');
+	}
+
+	// Add this function for toggling the bulletin text
+	window.toggleBulletinText = function(event) {
+		const button = event.target;
+		const container = button.nextElementSibling;
+		const isVisible = container.style.display !== 'none';
+		
+		container.style.display = isVisible ? 'none' : 'block';
+		button.textContent = isVisible ? 'Show Full Bulletin' : 'Hide Full Bulletin';
+		
+		if (!isVisible) {
+			container.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+		}
+	}
 });

@@ -634,6 +634,34 @@ body {
     100% { opacity: 0.6; }
 }
 
+.drop-indicator {
+    height: 2px;
+    background-color: var(--primary-color);
+    margin: 5px 0;
+    animation: pulse 1s infinite;
+}
+
+.dragging {
+    opacity: 0.8;
+    background: white;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.sortable-ghost {
+    opacity: 0.4;
+}
+
+.sortable-drag {
+    background: white;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+@keyframes pulse {
+    0% { opacity: 0.6; }
+    50% { opacity: 1; }
+    100% { opacity: 0.6; }
+}
+
 @media (max-width: 768px) {
     .selected-item {
         padding: 8px;
