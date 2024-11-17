@@ -108,7 +108,7 @@ body {
 /* Info Section Styles */
 .info-section {
     text-align: left;
-    max-width: 600px;
+    max-width: 600vw-20px;
     margin: 40px auto;
     padding: 20px;
     background: var(--card-background);
