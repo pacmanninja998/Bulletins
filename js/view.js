@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 
     // Initialize
     try {
-        bulletins = await bulletinAPI.loadData();  // Changed from githubAPI to bulletinAPI
+        bulletins = await bulletinAPI.loadData();
         filteredBulletins = {...bulletins};
         renderBulletins();
     } catch (error) {

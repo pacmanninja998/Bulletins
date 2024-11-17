@@ -1,5 +1,6 @@
 class BulletinStorage {
     constructor() {
+		console.log('BulletinStorage constructed');
         this.storageKey = 'norfolk_bulletins';
         // Add base URL for GitHub Pages
         this.baseUrl = '/Bulletins/';
@@ -104,4 +105,6 @@ class BulletinStorage {
 }
 
 // Create global instance
+console.log('Creating bulletinAPI instance...');
 window.bulletinAPI = new BulletinStorage();
+console.log('bulletinAPI created:', window.bulletinAPI);
