@@ -416,6 +416,73 @@ body {
     color: var(--error-color);
 }
 
+/* Selector */
+.content-wrapper {
+    display: flex;
+    gap: 20px;
+}
+
+.bulletins-main {
+    flex: 1;
+}
+
+.selected-bulletins {
+    width: 300px;
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    height: fit-content;
+    position: sticky;
+    top: 20px;
+}
+
+.selected-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.selected-item {
+    background: #f8f9fa;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: move;
+}
+
+.drag-handle {
+    color: #999;
+    cursor: move;
+    padding: 5px;
+}
+
+.drag-handle:hover {
+    color: #666;
+}
+
+.selected-item-content {
+    flex: 1;
+}
+
+.selected-item-checkbox {
+    margin-right: 10px;
+}
+
+/* Card checkbox styles */
+.bulletin-card {
+    position: relative;
+}
+
+.card-checkbox {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
 /* Messages */
 .message {
     padding: 10px;
