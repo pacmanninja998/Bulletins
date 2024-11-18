@@ -46,6 +46,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     let filteredBulletins = {};
 
     // Initialize
+	localStorage.removeItem('norfolk_bulletins');
     try {
         bulletins = await bulletinAPI.loadData();
         filteredBulletins = {...bulletins};
