@@ -689,23 +689,33 @@ body {
         right: 0;
     }
 	
-    .selected-bulletins {
-        position: fixed;
-        right: -100vw; /* Start off-screen */
-        top: 0;
-        bottom: 0;
-        width: 100vw;
-        background: white;
-        transition: right 0.3s ease;
-        box-shadow: -2px 0 10px rgba(0,0,0,0.1);
-        padding: 20px;
-        overflow-y: auto;
-        z-index: 1000; /* Ensure the drawer is on top */
-    }
+	@media (max-width: 768px) {
+		.selected-bulletins {
+			position: fixed;
+			right: -100vw;
+			top: 0;
+			bottom: 0;
+			width: 100vw;
+			max-height: 100vh; /* Changed from 40vh */
+			background: white;
+			transition: right 0.3s ease;
+			box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+			padding: 20px;
+			overflow-y: auto;
+			z-index: 9999;
+			display: none; /* Added */
+		}
 
-    .selected-bulletins.open {
-        right: 0;
-    }
+		.selected-bulletins.open {
+			right: 0;
+			display: block; /* Added */
+		}
+
+		.bulletins-main {
+			z-index: 1;
+			position: relative;
+		}
+	}
 }
 
 /* Drag and Drop Indicator Styles */
