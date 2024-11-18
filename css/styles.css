@@ -364,6 +364,12 @@ body {
     line-height: 1.4;
 }
 
+.modal-footer {
+    margin-top: 15px;
+    background: #f8f9fa;
+    border: 1px solid #eee;
+}
+
 .close-button {
     position: absolute;
     right: 15px;
