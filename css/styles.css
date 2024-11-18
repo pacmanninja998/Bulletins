@@ -463,40 +463,27 @@ body {
 }
 
 .selected-item {
-    user-select: none;
-    -webkit-user-select: none;
-    background: white;
-    padding: 12px;
-    border-radius: 4px;
-    border: 1px solid #ddd;
-    margin-bottom: 8px;
-    cursor: default;
-}
-
-.drag-handle {
-    cursor: move;
-    cursor: -webkit-grab;
-    padding: 12px 8px;
-    margin: -12px 0;
-    touch-action: none;
-    -webkit-user-select: none;
-    user-select: none;
+    transition: transform 0.2s ease;
 }
 
 .dragging .drag-handle {
     cursor: -webkit-grabbing;
 }
 
-.drag-handle {
-    cursor: move;
-    padding: 8px;
-    margin: -8px 0;
-    touch-action: none;
+@media (max-width: 768px) {
+    .drag-handle {
+        width: 44px;  /* Larger touch target */
+        height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 }
 
 .dragging {
-    background: #f8f9fa;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    opacity: 0.8;
+    background: white !important;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
 }
 
 .selected-item-content {

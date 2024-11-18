@@ -232,26 +232,35 @@ document.addEventListener('DOMContentLoaded', async function() {
 		const container = document.getElementById('selected-list');
 		if (!container || !container.children.length) return;
 
+		let touchTimeout;
+		const LONG_PRESS_DURATION = 500;
+
 		Array.from(container.children).forEach(item => {
 			const dragHandle = item.querySelector('.drag-handle');
 			let draggedItem = null;
 			let startY = 0;
 			let currentY = 0;
+			let isDragging = false;
 
-			// Touch event handlers
 			dragHandle.addEventListener('touchstart', (e) => {
-				e.preventDefault();
-				draggedItem = item;
 				startY = e.touches[0].pageY;
 				currentY = startY;
 				
-				item.classList.add('dragging');
-				item.style.position = 'relative';
-				item.style.zIndex = '1000';
+				touchTimeout = setTimeout(() => {
+					isDragging = true;
+					draggedItem = item;
+					item.classList.add('dragging');
+					item.style.position = 'relative';
+					item.style.zIndex = '1000';
+					navigator.vibrate && navigator.vibrate(50);
+				}, LONG_PRESS_DURATION);
 			});
 
 			dragHandle.addEventListener('touchmove', (e) => {
-				if (!draggedItem) return;
+				if (!isDragging) {
+					clearTimeout(touchTimeout);
+					return;
+				}
 				e.preventDefault();
 				
 				const touch = e.touches[0];
@@ -264,7 +273,6 @@ document.addEventListener('DOMContentLoaded', async function() {
 				
 				draggedItem.style.top = `${parseFloat(draggedItem.style.top || 0) + deltaY}px`;
 
-				// Find and swap with item below/above
 				const elemBelow = document.elementFromPoint(touch.clientX, touch.pageY);
 				const droppableItem = elemBelow?.closest('.selected-item');
 				
@@ -273,39 +281,47 @@ document.addEventListener('DOMContentLoaded', async function() {
 					const middle = rect.top + rect.height / 2;
 					
 					if (touch.pageY > middle && droppableItem.nextElementSibling !== draggedItem) {
-						droppableItem.parentNode.insertBefore(draggedItem, droppableItem.nextElementSibling);
+						container.insertBefore(draggedItem, droppableItem.nextElementSibling);
+						droppableItem.style.transform = 'translateY(-100%)';
+						setTimeout(() => droppableItem.style.transform = '', 100);
 					} else if (touch.pageY <= middle && droppableItem.previousElementSibling !== draggedItem) {
-						droppableItem.parentNode.insertBefore(draggedItem, droppableItem);
+						container.insertBefore(draggedItem, droppableItem);
+						droppableItem.style.transform = 'translateY(100%)';
+						setTimeout(() => droppableItem.style.transform = '', 100);
 					}
-					
-					// Visual feedback
 					droppableItem.style.opacity = '0.3';
+				}
+			}, { passive: false });
+
+			dragHandle.addEventListener('touchend', () => {
+				clearTimeout(touchTimeout);
+				if (!isDragging) return;
+				
+				isDragging = false;
+				if (draggedItem) {
+					draggedItem.classList.remove('dragging');
+					draggedItem.style.position = '';
+					draggedItem.style.top = '';
+					draggedItem.style.zIndex = '';
+					
+					container.querySelectorAll('.selected-item').forEach(item => {
+						item.style.opacity = '1';
+						item.style.transform = '';
+					});
+					
+					selectedBulletins = new Set(
+						Array.from(container.children).map(el => el.dataset.number)
+					);
+					
+					draggedItem = null;
 				}
 			});
 
-			dragHandle.addEventListener('touchend', (e) => {
-				if (!draggedItem) return;
-				e.preventDefault();
-				
-				draggedItem.classList.remove('dragging');
-				draggedItem.style.position = '';
-				draggedItem.style.top = '';
-				draggedItem.style.zIndex = '';
-				
-				// Reset opacity
-				container.querySelectorAll('.selected-item').forEach(item => {
-					item.style.opacity = '1';
-				});
-				
-				// Update order
-				selectedBulletins = new Set(
-					Array.from(container.children).map(el => el.dataset.number)
-				);
-				
-				draggedItem = null;
-			});
+			dragHandle.addEventListener('touchmove', (e) => {
+				if (isDragging) e.preventDefault();
+			}, { passive: false });
 
-			// Keep desktop functionality
+			// Desktop functionality
 			let originalIndex = null;
 
 			dragHandle.addEventListener('mousedown', (e) => {
