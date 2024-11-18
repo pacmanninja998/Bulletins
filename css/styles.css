@@ -583,32 +583,29 @@ body {
     }
 
     .drawer-toggle {
-        z-index: 10000;
-        display: block;
-        position: fixed;
+        width: 30px;
+        text-align: center;
     }
 	
     .selected-bulletins {
         position: fixed;
-        right: -100vw;
         top: 0;
+        right: -100%;
         bottom: 0;
-        width: 100vw;
+        width: 100%;
         height: 100vh;
         background: white;
-        transition: transform 0.3s ease;
+        transition: right 0.3s ease;
         box-shadow: -2px 0 10px rgba(0,0,0,0.1);
         padding: 20px;
         overflow-y: auto;
         z-index: 9999;
-        transform: translateX(100%);
-        display: block; 
-        margin: 0; 
-        border-radius: 0; 
+        margin: 0;
+        border-radius: 0;
+        display: block;
     }
 
     .selected-bulletins.open {
-        transform: translateX(0);
         right: 0;
     }
 
