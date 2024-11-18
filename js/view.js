@@ -43,7 +43,6 @@ document.addEventListener('DOMContentLoaded', async function() {
         }
     });
 
-    let bulletins = {};
     let filteredBulletins = {};
 
     // Initialize
