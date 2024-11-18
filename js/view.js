@@ -267,29 +267,41 @@ document.addEventListener('DOMContentLoaded', async function() {
 				const deltaY = touch.pageY - currentY;
 				currentY = touch.pageY;
 				
-				const containerRect = container.getBoundingClientRect();
-				const itemRect = draggedItem.getBoundingClientRect();
-				const relativeY = touch.pageY - containerRect.top - (itemRect.height / 2);
-				
 				draggedItem.style.top = `${parseFloat(draggedItem.style.top || 0) + deltaY}px`;
 
 				const elemBelow = document.elementFromPoint(touch.clientX, touch.pageY);
 				const droppableItem = elemBelow?.closest('.selected-item');
+
+				// Reset all items' positions first
+				container.querySelectorAll('.selected-item').forEach(item => {
+					if (item !== draggedItem) {
+						item.style.transform = '';
+						item.style.transition = 'transform 0.2s ease';
+					}
+				});
 				
 				if (droppableItem && droppableItem !== draggedItem) {
 					const rect = droppableItem.getBoundingClientRect();
 					const middle = rect.top + rect.height / 2;
 					
-					if (touch.pageY > middle && droppableItem.nextElementSibling !== draggedItem) {
-						container.insertBefore(draggedItem, droppableItem.nextElementSibling);
-						droppableItem.style.transform = 'translateY(-100%)';
-						setTimeout(() => droppableItem.style.transform = '', 100);
-					} else if (touch.pageY <= middle && droppableItem.previousElementSibling !== draggedItem) {
-						container.insertBefore(draggedItem, droppableItem);
-						droppableItem.style.transform = 'translateY(100%)';
-						setTimeout(() => droppableItem.style.transform = '', 100);
+					// Move items to make space
+					if (touch.pageY > middle) {
+						const nextItems = getNextSiblings(droppableItem, draggedItem);
+						nextItems.forEach(item => {
+							item.style.transform = 'translateY(60px)';
+						});
+						if (droppableItem.nextElementSibling !== draggedItem) {
+							container.insertBefore(draggedItem, droppableItem.nextElementSibling);
+						}
+					} else {
+						const prevItems = getPreviousSiblings(droppableItem, draggedItem);
+						prevItems.forEach(item => {
+							item.style.transform = 'translateY(-60px)';
+						});
+						if (droppableItem.previousElementSibling !== draggedItem) {
+							container.insertBefore(draggedItem, droppableItem);
+						}
 					}
-					droppableItem.style.opacity = '0.3';
 				}
 			}, { passive: false });
 
@@ -299,23 +311,17 @@ document.addEventListener('DOMContentLoaded', async function() {
 				
 				isDragging = false;
 				if (draggedItem) {
-					const finalPosition = draggedItem.getBoundingClientRect().top;
-					draggedItem.style.position = 'static';  // Changed from '' to 'static'
 					draggedItem.classList.remove('dragging');
-					draggedItem.style.top = '';
+					draggedItem.style.position = 'relative';
+					draggedItem.style.top = '0';
 					draggedItem.style.zIndex = '';
-					draggedItem.style.transform = '';  // Reset any transform
+					draggedItem.style.transform = '';
 					
-					// Reset other items
 					container.querySelectorAll('.selected-item').forEach(item => {
-						if (item !== draggedItem) {
-							item.style.opacity = '1';
-							item.style.transform = '';
-							item.style.transition = 'transform 0.2s ease';
-						}
+						item.style.transform = '';
+						item.style.transition = '';
 					});
 					
-					// Update order in Set
 					selectedBulletins = new Set(
 						Array.from(container.children).map(el => el.dataset.number)
 					);
@@ -362,11 +368,32 @@ document.addEventListener('DOMContentLoaded', async function() {
 
 				function onMouseMove(e) {
 					moveAt(e.pageY);
-					const elemBelow = document.elementFromPoint(e.clientX, e.clientY);
+					container.querySelectorAll('.selected-item').forEach(item => {
+						if (item !== draggedItem) {
+							item.style.transform = '';
+							item.style.transition = 'transform 0.2s ease';
+						}
+					});
+					
+					const elemBelow = document.elementFromPoint(e.clientX, e.pageY);
 					const droppableItem = elemBelow?.closest('.selected-item');
 					
 					if (droppableItem && droppableItem !== draggedItem) {
-						droppableItem.style.opacity = '0.3';
+						// Move other items to make space
+						const rect = droppableItem.getBoundingClientRect();
+						const middle = rect.top + rect.height / 2;
+						
+						if (e.pageY > middle) {
+							const nextItems = getNextSiblings(droppableItem, draggedItem);
+							nextItems.forEach(item => {
+								item.style.transform = 'translateY(60px)';
+							});
+						} else {
+							const prevItems = getPreviousSiblings(droppableItem, draggedItem);
+							prevItems.forEach(item => {
+								item.style.transform = 'translateY(-60px)';
+							});
+						}
 					}
 				}
 
@@ -380,7 +407,8 @@ document.addEventListener('DOMContentLoaded', async function() {
 					item.style.zIndex = '';
 					
 					container.querySelectorAll('.selected-item').forEach(item => {
-						item.style.opacity = '1';
+						item.style.transform = '';
+						item.style.transition = '';
 					});
 
 					selectedBulletins = new Set(
@@ -396,6 +424,30 @@ document.addEventListener('DOMContentLoaded', async function() {
 				e.preventDefault();
 			});
 		});
+	}
+
+	function getNextSiblings(elem, draggedItem) {
+		const siblings = [];
+		let sibling = elem.nextElementSibling;
+		while (sibling) {
+			if (sibling !== draggedItem) {
+				siblings.push(sibling);
+			}
+			sibling = sibling.nextElementSibling;
+		}
+		return siblings;
+	}
+
+	function getPreviousSiblings(elem, draggedItem) {
+		const siblings = [];
+		let sibling = elem.previousElementSibling;
+		while (sibling) {
+			if (sibling !== draggedItem) {
+				siblings.push(sibling);
+			}
+			sibling = sibling.previousElementSibling;
+		}
+		return siblings.reverse();
 	}
 
 	// Update styles for drag handle
