@@ -303,6 +303,31 @@ body {
     margin: 0;
 }
 
+.modal-section {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 6px;
+}
+
+/* Comments section specific styling */
+.modal-section:nth-child(3) {
+    grid-column: 1 / -1;  /* Spans full width */
+    margin-top: 15px;
+    background: #fff;
+    border: 1px solid #eee;
+}
+
+.modal-section h3 {
+    color: var(--secondary-color);
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+}
+
+.modal-section p {
+    margin: 10px 0;
+    line-height: 1.4;
+}
+
 .modal-footer {
     margin-top: 20px;
     padding-top: 10px;

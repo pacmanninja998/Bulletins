@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     const positionFilter = document.getElementById('position-filter');
     const restDaysFilter = document.getElementById('rest-days-filter');
     const districtFilter = document.getElementById('district-filter');
+	let bulletins = {};
     const bulletinsGrid = document.getElementById('bulletins-grid');
     const modal = document.getElementById('bulletin-modal');
     const modalContent = document.getElementById('modal-content');
@@ -273,6 +274,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 
 	function showBulletinDetails(number) {
 		const data = bulletins[number];
+		console.log("Bulletin data:", data);
 		const date = new Date(data.timestamp).toLocaleString();
 
 		modalContent.innerHTML = `
@@ -285,8 +287,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 					<h3>Basic Information</h3>
 					<p><strong>Bulletin Number:</strong> ${number}</p>
 					<p><strong>Position:</strong> ${capitalizeFirst(data.position)}</p>
-					<p><strong>Comments:</strong> ${data.comments ? data.comments.trim() : 'No comments available'}</p>
-					${data.jobName ? `<p><strong>Job Name:</strong> ${data.jobName}</p>` : ''}
+					<p><strong>Job Name:</strong> ${data.jobName || 'N/A'}</p>
 				</div>
 			
 				<div class="modal-section">
@@ -294,6 +295,11 @@ document.addEventListener('DOMContentLoaded', async function() {
 					<p><strong>Show Up Time:</strong> ${data.showUpTime}</p>
 					<p><strong>Shift:</strong> ${data.shift}</p>
 					<p><strong>Rest Days:</strong> ${data.restDays}</p>
+				</div>
+
+				<div class="modal-section">
+					<h3>Comments</h3>
+					<p>${data.comments ? data.comments : 'No comments available'}</p>
 				</div>
 
 				<div class="modal-footer">
