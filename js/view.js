@@ -228,14 +228,16 @@ document.addEventListener('DOMContentLoaded', async function() {
 				touchTimeout = setTimeout(() => {
 					isDragging = true;
 					draggedItem = item;
-					const rect = draggedItem.getBoundingClientRect();
-					
 					draggedItem.classList.add('dragging');
-					draggedItem.style.position = 'fixed';
-					draggedItem.style.width = `${rect.width}px`;
-					draggedItem.style.left = `${rect.left}px`;
-					draggedItem.style.top = `${startY - rect.height/2}px`;
+					draggedItem.style.position = 'absolute';
 					draggedItem.style.zIndex = '1000';
+					container.style.position = 'relative';
+					
+					const touch = e.touches[0];
+					const rect = draggedItem.getBoundingClientRect();
+					const containerRect = container.getBoundingClientRect();
+					const offsetY = touch.pageY - rect.top;
+					draggedItem.style.top = `${touch.pageY - containerRect.top - offsetY}px`;
 					
 					navigator.vibrate && navigator.vibrate(50);
 				}, LONG_PRESS_DURATION);
@@ -249,8 +251,8 @@ document.addEventListener('DOMContentLoaded', async function() {
 				e.preventDefault();
 				
 				const touch = e.touches[0];
-				const rect = draggedItem.getBoundingClientRect();
-				draggedItem.style.top = `${touch.pageY - rect.height/2}px`;
+				const containerRect = container.getBoundingClientRect();
+				draggedItem.style.top = `${touch.pageY - containerRect.top - 30}px`;
 
 				// Reset all items' positions first
 				container.querySelectorAll('.selected-item').forEach(item => {
