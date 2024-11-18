@@ -195,27 +195,6 @@ document.addEventListener('DOMContentLoaded', async function() {
         updateSelectedList();
     }
 
-    function updateSelectedList() {
-        selectedList.innerHTML = Array.from(selectedBulletins)
-            .map(number => {
-                const data = bulletins[number];
-                return `
-                    <div class="selected-item" data-number="${number}">
-                        <div class="drag-handle" touch-action="none">≡</div>
-                        <div class="selected-item-content">
-                            <div><strong>${data.jobId}</strong></div>
-                            <div class="bulletin-number" onclick="copyBulletinNumber('${number}')">${number}</div>
-                            <div>Show up: ${data.showUpTime}</div>
-                            <div>Rest Days: ${data.restDays}</div>
-                        </div>
-                    </div>
-                `;
-            })
-            .join('');
-    
-        initializeDragAndDrop();
-    }
-
     function copyBulletinNumber(number) {
         navigator.clipboard.writeText(number)
             .then(() => {
