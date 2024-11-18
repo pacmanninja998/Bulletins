@@ -228,54 +228,34 @@ document.addEventListener('DOMContentLoaded', async function() {
             .catch(err => console.error('Failed to copy:', err));
     }
 
-    function initializeDragAndDrop() {
-        const container = document.getElementById('selected-list');
-        if (container.children.length > 0) {
-            new Sortable(container, {
-                animation: 150,
-                handle: '.drag-handle',
-                delay: 250,
-                delayOnTouchOnly: true,
-                touchStartThreshold: 10,
-                fallbackTolerance: 10,
-                forceFallback: true,
-                dragClass: "sortable-drag",
-                ghostClass: "sortable-ghost",
-                chosenClass: "sortable-chosen",
-                dragOverClass: "sortable-drag-over",
-                scroll: true,
-                scrollSensitivity: 30,
-                scrollSpeed: 10,
-                onStart: function(evt) {
-                    document.body.style.overflow = 'hidden';
-                    evt.item.classList.add('dragging');
-                },
-                onEnd: function(evt) {
-                    document.body.style.overflow = '';
-                    evt.item.classList.remove('dragging');
-                    selectedBulletins = new Set(
-                        Array.from(container.children).map(el => el.dataset.number)
-                    );
-                },
-                onChange: function(evt) {
-                    // Remove existing drop indicators
-                    const indicators = container.querySelectorAll('.drop-indicator');
-                    indicators.forEach(indicator => indicator.remove());
-                    
-                    // Add new drop indicator
-                    if (evt.dragged && evt.related) {
-                        const indicator = document.createElement('div');
-                        indicator.className = 'drop-indicator';
-                        evt.related.parentNode.insertBefore(indicator, evt.related);
-                    }
-                },
-                touchAction: "none",
-                touchStartThreshold: 0,
-                swapThreshold: 1,
-                moveThreshold: 0
-            });
-        }
-    }
+	function initializeDragAndDrop() {
+		const container = document.getElementById('selected-list');
+		if (container.children.length > 0) {
+			new Sortable(container, {
+				animation: 150,
+				handle: '.drag-handle',
+				forceFallback: false,  // Changed from true
+				fallbackTolerance: 3,  // Reduced from 10
+				delay: 150,           // Reduced from 250
+				delayOnTouchOnly: true,
+				dragClass: "sortable-drag",
+				ghostClass: "sortable-ghost",
+				chosenClass: "sortable-chosen",
+				onStart: function(evt) {
+					evt.item.classList.add('dragging');
+				},
+				onEnd: function(evt) {
+					evt.item.classList.remove('dragging');
+					selectedBulletins = new Set(
+						Array.from(container.children).map(el => el.dataset.number)
+					);
+				},
+				touchAction: 'none',
+				swapThreshold: 0.65,  // Added for better swap detection
+				direction: 'vertical'  // Force vertical sorting
+			});
+		}
+	}
 
 	function showBulletinDetails(number) {
 		const data = bulletins[number];
