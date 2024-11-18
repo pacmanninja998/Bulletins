@@ -195,6 +195,27 @@ document.addEventListener('DOMContentLoaded', async function() {
         updateSelectedList();
     }
 
+    function updateSelectedList() {
+        selectedList.innerHTML = Array.from(selectedBulletins)
+            .map(number => {
+                const data = bulletins[number];
+                return `
+                    <div class="selected-item" data-number="${number}">
+                        <div class="drag-handle" touch-action="none">≡</div>
+                        <div class="selected-item-content">
+                            <div><strong>${data.jobId}</strong></div>
+                            <div class="bulletin-number" onclick="copyBulletinNumber('${number}')">${number}</div>
+                            <div>Show up: ${data.showUpTime}</div>
+                            <div>Rest Days: ${data.restDays}</div>
+                        </div>
+                    </div>
+                `;
+            })
+            .join('');
+    
+        initializeDragAndDrop();
+    }
+
     function copyBulletinNumber(number) {
         navigator.clipboard.writeText(number)
             .then(() => {
@@ -229,7 +250,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 					isDragging = true;
 					draggedItem = item;
 					item.classList.add('dragging');
-					item.style.position = 'fixed';
+					item.style.position = 'relative';
 					item.style.zIndex = '1000';
 					navigator.vibrate && navigator.vibrate(50);
 				}, LONG_PRESS_DURATION);
@@ -243,14 +264,12 @@ document.addEventListener('DOMContentLoaded', async function() {
 				e.preventDefault();
 				
 				const touch = e.touches[0];
-				const itemRect = draggedItem.getBoundingClientRect();
-				const itemHeight = itemRect.height;
-				const touchY = touch.pageY;
-				const newTop = touchY - itemHeight/2;  // Center the item on touch point
+				const deltaY = touch.pageY - currentY;
+				currentY = touch.pageY;
 				
-				draggedItem.style.top = `${newTop}px`;
+				draggedItem.style.top = `${parseFloat(draggedItem.style.top || 0) + deltaY}px`;
 
-				const elemBelow = document.elementFromPoint(touch.clientX, touchY);
+				const elemBelow = document.elementFromPoint(touch.clientX, touch.pageY);
 				const droppableItem = elemBelow?.closest('.selected-item');
 
 				// Reset all items' positions first
