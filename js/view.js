@@ -230,31 +230,108 @@ document.addEventListener('DOMContentLoaded', async function() {
 
 	function initializeDragAndDrop() {
 		const container = document.getElementById('selected-list');
-		if (container.children.length > 0) {
-			new Sortable(container, {
-				animation: 150,
-				handle: '.drag-handle',
-				forceFallback: false,  // Changed from true
-				fallbackTolerance: 3,  // Reduced from 10
-				delay: 150,           // Reduced from 250
-				delayOnTouchOnly: true,
-				dragClass: "sortable-drag",
-				ghostClass: "sortable-ghost",
-				chosenClass: "sortable-chosen",
-				onStart: function(evt) {
-					evt.item.classList.add('dragging');
-				},
-				onEnd: function(evt) {
-					evt.item.classList.remove('dragging');
+		if (!container || !container.children.length) return;
+
+		// Add drag handlers to each item
+		Array.from(container.children).forEach(item => {
+			const dragHandle = item.querySelector('.drag-handle');
+			let draggedItem = null;
+			let originalIndex = null;
+
+			dragHandle.addEventListener('mousedown', (e) => {
+				draggedItem = item;
+				originalIndex = Array.from(container.children).indexOf(item);
+				
+				item.classList.add('dragging');
+				item.style.position = 'absolute';
+				item.style.zIndex = '1000';
+				
+				moveAt(e.pageY);
+				
+				// Move the dragged item
+				function moveAt(pageY) {
+					const containerRect = container.getBoundingClientRect();
+					const itemHeight = item.offsetHeight;
+					const relativeY = pageY - containerRect.top - window.scrollY;
+					const newIndex = Math.floor(relativeY / itemHeight);
+					
+					if (newIndex >= 0 && newIndex < container.children.length) {
+						const currentIndex = Array.from(container.children).indexOf(draggedItem);
+						if (newIndex !== currentIndex) {
+							if (newIndex < currentIndex) {
+								container.insertBefore(draggedItem, container.children[newIndex]);
+							} else {
+								container.insertBefore(draggedItem, container.children[newIndex + 1]);
+							}
+						}
+					}
+					
+					item.style.top = `${relativeY}px`;
+				}
+
+				function onMouseMove(e) {
+					moveAt(e.pageY);
+					
+					// Highlight drop target
+					const elemBelow = document.elementFromPoint(e.clientX, e.clientY);
+					const droppableItem = elemBelow?.closest('.selected-item');
+					
+					if (droppableItem && droppableItem !== draggedItem) {
+						droppableItem.style.opacity = '0.3';
+					}
+				}
+
+				function onMouseUp() {
+					document.removeEventListener('mousemove', onMouseMove);
+					document.removeEventListener('mouseup', onMouseUp);
+					
+					item.classList.remove('dragging');
+					item.style.position = '';
+					item.style.top = '';
+					item.style.zIndex = '';
+					
+					// Reset opacity of all items
+					container.querySelectorAll('.selected-item').forEach(item => {
+						item.style.opacity = '1';
+					});
+
+					// Update selectedBulletins order
 					selectedBulletins = new Set(
 						Array.from(container.children).map(el => el.dataset.number)
 					);
-				},
-				touchAction: 'none',
-				swapThreshold: 0.65,  // Added for better swap detection
-				direction: 'vertical'  // Force vertical sorting
+				}
+
+				document.addEventListener('mousemove', onMouseMove);
+				document.addEventListener('mouseup', onMouseUp);
 			});
-		}
+
+			// Prevent default drag behavior
+			dragHandle.addEventListener('dragstart', (e) => {
+				e.preventDefault();
+			});
+		});
+	}
+
+	// Update styles for drag handle
+	function updateSelectedList() {
+		selectedList.innerHTML = Array.from(selectedBulletins)
+			.map(number => {
+				const data = bulletins[number];
+				return `
+					<div class="selected-item" data-number="${number}">
+						<div class="drag-handle" touch-action="none" draggable="false">≡</div>
+						<div class="selected-item-content">
+							<div><strong>${data.jobId}</strong></div>
+							<div class="bulletin-number" onclick="copyBulletinNumber('${number}')">${number}</div>
+							<div>Show up: ${data.showUpTime}</div>
+							<div>Rest Days: ${data.restDays}</div>
+						</div>
+					</div>
+				`;
+			})
+			.join('');
+
+		initializeDragAndDrop();
 	}
 
 	function showBulletinDetails(number) {

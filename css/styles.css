@@ -462,6 +462,42 @@ body {
     color: #666;
 }
 
+.selected-item {
+    user-select: none;
+    -webkit-user-select: none;
+    background: white;
+    padding: 12px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    margin-bottom: 8px;
+    cursor: default;
+}
+
+.drag-handle {
+    cursor: move;
+    padding: 8px;
+    margin: -8px 0;
+    touch-action: none;
+}
+
+.dragging {
+    background: #f8f9fa;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.selected-item-content {
+    pointer-events: auto;
+}
+
+.bulletin-number {
+    color: var(--primary-color);
+    cursor: pointer;
+}
+
+.bulletin-number:hover {
+    text-decoration: underline;
+}
+
 .close-button:hover {
     color: var(--error-color);
 }
