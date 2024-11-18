@@ -574,7 +574,7 @@ body {
     }
 
     .modal {
-        z-index: 9998;
+        z-index: 10001;
     }
 
     .modal-content {
@@ -583,10 +583,12 @@ body {
     }
 
     .drawer-toggle {
+        z-index: 10000;
         display: block;
-	}
+        position: fixed;
+    }
 	
-	.selected-bulletins {
+    .selected-bulletins {
         position: fixed;
         right: -100vw;
         top: 0;
@@ -600,12 +602,14 @@ body {
         overflow-y: auto;
         z-index: 9999;
         transform: translateX(100%);
-        visibility: hidden;
+        display: block; 
+        margin: 0; 
+        border-radius: 0; 
     }
 
     .selected-bulletins.open {
         transform: translateX(0);
-        visibility: visible;
+        right: 0;
     }
 
     .bulletins-main {
