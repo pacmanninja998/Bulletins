@@ -228,15 +228,10 @@ document.addEventListener('DOMContentLoaded', async function() {
 				touchTimeout = setTimeout(() => {
 					isDragging = true;
 					draggedItem = item;
-					const rect = draggedItem.getBoundingClientRect();
-					
-					draggedItem.classList.add('dragging');
-					draggedItem.style.position = 'fixed';
-					draggedItem.style.width = `${rect.width}px`;
-					draggedItem.style.left = `${rect.left}px`;
-					draggedItem.style.top = `${startY - rect.height/2}px`;
-					draggedItem.style.zIndex = '1000';
-					
+					item.classList.add('dragging');
+					item.style.position = 'fixed';  // Changed from 'relative'
+					item.style.width = `${item.offsetWidth}px`;  // Preserve width
+					item.style.zIndex = '1000';
 					navigator.vibrate && navigator.vibrate(50);
 				}, LONG_PRESS_DURATION);
 			});
@@ -249,8 +244,12 @@ document.addEventListener('DOMContentLoaded', async function() {
 				e.preventDefault();
 				
 				const touch = e.touches[0];
-				const rect = draggedItem.getBoundingClientRect();
-				draggedItem.style.top = `${touch.pageY - rect.height/2}px`;
+				const itemRect = draggedItem.getBoundingClientRect();
+				const touchY = touch.pageY;
+				draggedItem.style.top = `${touchY - itemRect.height/2}px`; // Center on touch point
+
+				const elemBelow = document.elementFromPoint(touch.clientX, touchY);
+				const droppableItem = elemBelow?.closest('.selected-item');
 
 				// Reset all items' positions first
 				container.querySelectorAll('.selected-item').forEach(item => {
@@ -259,14 +258,12 @@ document.addEventListener('DOMContentLoaded', async function() {
 						item.style.transition = 'transform 0.2s ease';
 					}
 				});
-
-				const elemBelow = document.elementFromPoint(touch.clientX, touch.pageY);
-				const droppableItem = elemBelow?.closest('.selected-item');
 				
 				if (droppableItem && droppableItem !== draggedItem) {
-					const droppableRect = droppableItem.getBoundingClientRect();
-					const middle = droppableRect.top + droppableRect.height/2;
+					const rect = droppableItem.getBoundingClientRect();
+					const middle = rect.top + rect.height / 2;
 					
+					// Move items to make space
 					if (touch.pageY > middle) {
 						const nextItems = getNextSiblings(droppableItem, draggedItem);
 						nextItems.forEach(item => {
@@ -285,7 +282,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 						}
 					}
 				}
-			});
+			}, { passive: false });
 
 			dragHandle.addEventListener('touchend', () => {
 				clearTimeout(touchTimeout);
@@ -294,12 +291,15 @@ document.addEventListener('DOMContentLoaded', async function() {
 				isDragging = false;
 				if (draggedItem) {
 					draggedItem.classList.remove('dragging');
-					draggedItem.style.position = '';
-					draggedItem.style.width = '';
-					draggedItem.style.left = '';
-					draggedItem.style.top = '';
+					draggedItem.style.position = 'relative';
+					draggedItem.style.top = '0';
 					draggedItem.style.zIndex = '';
 					draggedItem.style.transform = '';
+					
+					container.querySelectorAll('.selected-item').forEach(item => {
+						item.style.transform = '';
+						item.style.transition = '';
+					});
 					
 					selectedBulletins = new Set(
 						Array.from(container.children).map(el => el.dataset.number)
