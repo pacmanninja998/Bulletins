@@ -299,16 +299,23 @@ document.addEventListener('DOMContentLoaded', async function() {
 				
 				isDragging = false;
 				if (draggedItem) {
+					const finalPosition = draggedItem.getBoundingClientRect().top;
+					draggedItem.style.position = 'static';  // Changed from '' to 'static'
 					draggedItem.classList.remove('dragging');
-					draggedItem.style.position = '';
 					draggedItem.style.top = '';
 					draggedItem.style.zIndex = '';
+					draggedItem.style.transform = '';  // Reset any transform
 					
+					// Reset other items
 					container.querySelectorAll('.selected-item').forEach(item => {
-						item.style.opacity = '1';
-						item.style.transform = '';
+						if (item !== draggedItem) {
+							item.style.opacity = '1';
+							item.style.transform = '';
+							item.style.transition = 'transform 0.2s ease';
+						}
 					});
 					
+					// Update order in Set
 					selectedBulletins = new Set(
 						Array.from(container.children).map(el => el.dataset.number)
 					);
