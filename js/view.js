@@ -1,5 +1,10 @@
 document.addEventListener('DOMContentLoaded', async function() {
-    // DOM Elements
+    
+	//Clear Cache
+	localStorage.clear();
+	console.log('Cache cleared');
+	
+	// DOM Elements
     const searchInput = document.getElementById('search-input');
     const shiftFilter = document.getElementById('shift-filter');
     const positionFilter = document.getElementById('position-filter');
@@ -14,7 +19,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     const selectedList = document.getElementById('selected-list');
     const selectedBulletinsContainer = document.querySelector('.selected-bulletins');
 
-    // Create and add drawer toggle button
+    	// Create and add drawer toggle button
     const drawerToggle = document.createElement('div');
     drawerToggle.className = 'drawer-toggle';
     drawerToggle.innerHTML = '<span class="arrow">◄</span>';
