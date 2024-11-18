@@ -267,11 +267,10 @@ document.addEventListener('DOMContentLoaded', async function() {
 				const deltaY = touch.pageY - currentY;
 				currentY = touch.pageY;
 				
-				const containerRect = container.getBoundingClientRect();
-				const itemRect = draggedItem.getBoundingClientRect();
-				const relativeY = touch.pageY - containerRect.top - (itemRect.height / 2);
-				
 				draggedItem.style.top = `${parseFloat(draggedItem.style.top || 0) + deltaY}px`;
+
+				// Remove any existing indicators
+				container.querySelectorAll('.drop-indicator').forEach(el => el.remove());
 
 				const elemBelow = document.elementFromPoint(touch.clientX, touch.pageY);
 				const droppableItem = elemBelow?.closest('.selected-item');
@@ -280,20 +279,21 @@ document.addEventListener('DOMContentLoaded', async function() {
 					const rect = droppableItem.getBoundingClientRect();
 					const middle = rect.top + rect.height / 2;
 					
-					if (touch.pageY > middle && droppableItem.nextElementSibling !== draggedItem) {
-						container.insertBefore(draggedItem, droppableItem.nextElementSibling);
-						droppableItem.style.transform = 'translateY(-100%)';
-						setTimeout(() => droppableItem.style.transform = '', 100);
-					} else if (touch.pageY <= middle && droppableItem.previousElementSibling !== draggedItem) {
-						container.insertBefore(draggedItem, droppableItem);
-						droppableItem.style.transform = 'translateY(100%)';
-						setTimeout(() => droppableItem.style.transform = '', 100);
+					// Create drop indicator
+					const indicator = document.createElement('div');
+					indicator.className = 'drop-indicator active';
+					
+					if (touch.pageY > middle) {
+						droppableItem.parentNode.insertBefore(indicator, droppableItem.nextSibling);
+					} else {
+						droppableItem.parentNode.insertBefore(indicator, droppableItem);
 					}
-					droppableItem.style.opacity = '0.3';
 				}
-			}, { passive: false });
+			});
 
+			// Clean up indicators on touch end
 			dragHandle.addEventListener('touchend', () => {
+				container.querySelectorAll('.drop-indicator').forEach(el => el.remove());
 				clearTimeout(touchTimeout);
 				if (!isDragging) return;
 				
