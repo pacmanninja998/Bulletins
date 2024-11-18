@@ -552,16 +552,10 @@ footer a:hover {
 }
 
 .drop-indicator {
-    height: 0;
-    background: transparent;
-    border: 2px dashed var(--primary-color);
-    margin: 10px 0;
-    transition: height 0.2s ease;
-}
-
-.drop-indicator.active {
-    height: 60px; /* Match your card height */
-    margin: 10px 0;
+    height: 2px;
+    background-color: var(--primary-color);
+    margin: 5px 0;
+    animation: pulse 1s infinite;
 }
 
 @keyframes pulse {
