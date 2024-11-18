@@ -229,8 +229,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 					isDragging = true;
 					draggedItem = item;
 					item.classList.add('dragging');
-					item.style.position = 'fixed';  // Changed from 'relative'
-					item.style.width = `${item.offsetWidth}px`;  // Preserve width
+					item.style.position = 'relative';
 					item.style.zIndex = '1000';
 					navigator.vibrate && navigator.vibrate(50);
 				}, LONG_PRESS_DURATION);
@@ -244,11 +243,12 @@ document.addEventListener('DOMContentLoaded', async function() {
 				e.preventDefault();
 				
 				const touch = e.touches[0];
-				const itemRect = draggedItem.getBoundingClientRect();
-				const touchY = touch.pageY;
-				draggedItem.style.top = `${touchY - itemRect.height/2}px`; // Center on touch point
+				const deltaY = touch.pageY - currentY;
+				currentY = touch.pageY;
+				
+				draggedItem.style.top = `${parseFloat(draggedItem.style.top || 0) + deltaY}px`;
 
-				const elemBelow = document.elementFromPoint(touch.clientX, touchY);
+				const elemBelow = document.elementFromPoint(touch.clientX, touch.pageY);
 				const droppableItem = elemBelow?.closest('.selected-item');
 
 				// Reset all items' positions first
