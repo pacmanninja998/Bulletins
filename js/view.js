@@ -184,11 +184,11 @@ document.addEventListener('DOMContentLoaded', async function() {
     function handleCardSelection(event, bulletinNumber) {
         if (event.target.checked) {
             selectedBulletins.add(bulletinNumber);
-            if (window.innerWidth <= 768) {
+            /* if (window.innerWidth <= 768) {
                 selectedBulletinsContainer.classList.add('open');
                 drawerToggle.classList.add('open');
                 drawerToggle.querySelector('.arrow').textContent = '►';
-            }
+            } */
         } else {
             selectedBulletins.delete(bulletinNumber);
         }
