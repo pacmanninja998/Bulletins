@@ -232,10 +232,80 @@ document.addEventListener('DOMContentLoaded', async function() {
 		const container = document.getElementById('selected-list');
 		if (!container || !container.children.length) return;
 
-		// Add drag handlers to each item
 		Array.from(container.children).forEach(item => {
 			const dragHandle = item.querySelector('.drag-handle');
 			let draggedItem = null;
+			let startY = 0;
+			let currentY = 0;
+
+			// Touch event handlers
+			dragHandle.addEventListener('touchstart', (e) => {
+				e.preventDefault();
+				draggedItem = item;
+				startY = e.touches[0].pageY;
+				currentY = startY;
+				
+				item.classList.add('dragging');
+				item.style.position = 'relative';
+				item.style.zIndex = '1000';
+			});
+
+			dragHandle.addEventListener('touchmove', (e) => {
+				if (!draggedItem) return;
+				e.preventDefault();
+				
+				const touch = e.touches[0];
+				const deltaY = touch.pageY - currentY;
+				currentY = touch.pageY;
+				
+				const containerRect = container.getBoundingClientRect();
+				const itemRect = draggedItem.getBoundingClientRect();
+				const relativeY = touch.pageY - containerRect.top - (itemRect.height / 2);
+				
+				draggedItem.style.top = `${parseFloat(draggedItem.style.top || 0) + deltaY}px`;
+
+				// Find and swap with item below/above
+				const elemBelow = document.elementFromPoint(touch.clientX, touch.pageY);
+				const droppableItem = elemBelow?.closest('.selected-item');
+				
+				if (droppableItem && droppableItem !== draggedItem) {
+					const rect = droppableItem.getBoundingClientRect();
+					const middle = rect.top + rect.height / 2;
+					
+					if (touch.pageY > middle && droppableItem.nextElementSibling !== draggedItem) {
+						droppableItem.parentNode.insertBefore(draggedItem, droppableItem.nextElementSibling);
+					} else if (touch.pageY <= middle && droppableItem.previousElementSibling !== draggedItem) {
+						droppableItem.parentNode.insertBefore(draggedItem, droppableItem);
+					}
+					
+					// Visual feedback
+					droppableItem.style.opacity = '0.3';
+				}
+			});
+
+			dragHandle.addEventListener('touchend', (e) => {
+				if (!draggedItem) return;
+				e.preventDefault();
+				
+				draggedItem.classList.remove('dragging');
+				draggedItem.style.position = '';
+				draggedItem.style.top = '';
+				draggedItem.style.zIndex = '';
+				
+				// Reset opacity
+				container.querySelectorAll('.selected-item').forEach(item => {
+					item.style.opacity = '1';
+				});
+				
+				// Update order
+				selectedBulletins = new Set(
+					Array.from(container.children).map(el => el.dataset.number)
+				);
+				
+				draggedItem = null;
+			});
+
+			// Keep desktop functionality
 			let originalIndex = null;
 
 			dragHandle.addEventListener('mousedown', (e) => {
@@ -248,7 +318,6 @@ document.addEventListener('DOMContentLoaded', async function() {
 				
 				moveAt(e.pageY);
 				
-				// Move the dragged item
 				function moveAt(pageY) {
 					const containerRect = container.getBoundingClientRect();
 					const itemHeight = item.offsetHeight;
@@ -265,14 +334,11 @@ document.addEventListener('DOMContentLoaded', async function() {
 							}
 						}
 					}
-					
 					item.style.top = `${relativeY}px`;
 				}
 
 				function onMouseMove(e) {
 					moveAt(e.pageY);
-					
-					// Highlight drop target
 					const elemBelow = document.elementFromPoint(e.clientX, e.clientY);
 					const droppableItem = elemBelow?.closest('.selected-item');
 					
@@ -290,12 +356,10 @@ document.addEventListener('DOMContentLoaded', async function() {
 					item.style.top = '';
 					item.style.zIndex = '';
 					
-					// Reset opacity of all items
 					container.querySelectorAll('.selected-item').forEach(item => {
 						item.style.opacity = '1';
 					});
 
-					// Update selectedBulletins order
 					selectedBulletins = new Set(
 						Array.from(container.children).map(el => el.dataset.number)
 					);
@@ -305,7 +369,6 @@ document.addEventListener('DOMContentLoaded', async function() {
 				document.addEventListener('mouseup', onMouseUp);
 			});
 
-			// Prevent default drag behavior
 			dragHandle.addEventListener('dragstart', (e) => {
 				e.preventDefault();
 			});

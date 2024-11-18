@@ -475,6 +475,20 @@ body {
 
 .drag-handle {
     cursor: move;
+    cursor: -webkit-grab;
+    padding: 12px 8px;
+    margin: -12px 0;
+    touch-action: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.dragging .drag-handle {
+    cursor: -webkit-grabbing;
+}
+
+.drag-handle {
+    cursor: move;
     padding: 8px;
     margin: -8px 0;
     touch-action: none;
